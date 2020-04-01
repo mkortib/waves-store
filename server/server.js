@@ -16,9 +16,37 @@ app.use(cookieParser());
 
 // Models
 const { User } = require('./models/user');
+const { Brand } = require('./models/brand');
 
 // Middlewares
 const { auth } = require('./middleware/auth');
+const { admin } = require('./middleware/admin');
+
+//==================
+//	    BRANDS
+//==================
+
+app.post('/api/user/brand', auth, admin, (req, res) => {
+  const brand = new Brand(req.body);
+
+  brand.save((err, doc) => {
+    if (err) {
+      const errRespnse = { success: false, error: err };
+
+      return res.json(errRespnse);
+    }
+
+    const brandResponse = { success: true, brand: doc };
+
+    res.status(200).json(brandResponse);
+  });
+});
+
+app.get('/api/product/brands', (req, res) => {
+  Brand.find({})
+    .then((brands) => res.status(200).send(brands))
+    .catch((err) => res.status(400).send(err));
+});
 
 //==================
 //	    USERS
