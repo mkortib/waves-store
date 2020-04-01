@@ -17,10 +17,37 @@ app.use(cookieParser());
 // Models
 const { User } = require('./models/user');
 const { Brand } = require('./models/brand');
+const { Wood } = require('./models/wood');
 
 // Middlewares
 const { auth } = require('./middleware/auth');
 const { admin } = require('./middleware/admin');
+
+//==================
+//	    WOODS
+//==================
+
+app.post('/api/product/wood', auth, admin, (req, res) => {
+  const wood = new Wood(req.body);
+
+  wood.save((error, doc) => {
+    if (error) {
+      const errResponse = { success: false, error };
+
+      return res.json(errResponse);
+    }
+
+    const woodResponse = { success: true, wood: doc };
+
+    res.status(200).send(woodResponse);
+  });
+});
+
+app.get('/api/product/woods', (req, res) => {
+  Wood.find({})
+    .then((woods) => res.status(200).send(woods))
+    .catch((error) => res.status(400).send(error));
+});
 
 //==================
 //	    BRANDS
