@@ -18,10 +18,68 @@ app.use(cookieParser());
 const { User } = require('./models/user');
 const { Brand } = require('./models/brand');
 const { Wood } = require('./models/wood');
+const { Product } = require('./models/product');
 
 // Middlewares
 const { auth } = require('./middleware/auth');
 const { admin } = require('./middleware/admin');
+
+//==================
+//	   Products
+//==================
+
+// BY ARRIVAL - api/product/acricles?sortBy=createdAt&order=desc&limit=4
+
+// BY SELL - api/product/acricles?sortBy=sold&order=desc&limit=4&skip=5
+app.get('/api/product/articles', (req, res) => {
+  const order = req.query.order ? req.query.order : 'asc';
+  const sortBy = req.query.sortBy ? req.query.sortBy : '_id';
+  const limit = req.query.limit ? +req.query.limit : 100;
+
+  Product.find()
+    .populate('brand')
+    .populate('wood')
+    .sort([[sortBy, order]])
+    .limit(limit)
+    .then((articles) => res.send(articles))
+    .catch((err) => res.status(400).send(err));
+});
+
+// api/product/acricles?id=26162,2112,2134&type=array
+app.get('/api/product/articles_by_id', (req, res) => {
+  const { type } = req.query;
+  let items = req.query.id;
+
+  if (type === 'array') {
+    const ids = req.query.id.split(',');
+    items = [];
+    items = ids.map((item) => mongoose.Types.ObjectId(item));
+  }
+
+  Product.find({ _id: { $in: items } })
+    .populate('brand')
+    .populate('wood')
+    .then((docs) => {
+      res.status(200).send(docs);
+    })
+    .catch((error) => res.json(error));
+});
+
+app.post('/api/product/article', auth, admin, (req, res) => {
+  const product = new Product(req.body);
+
+  product.save((error, doc) => {
+    if (error) {
+      const errResponse = { success: false, error };
+
+      return res.json(errResponse);
+    }
+
+    const prodResponse = { success: true, article: doc };
+
+    res.status(200).json(prodResponse);
+  });
+});
 
 //==================
 //	    WOODS
@@ -58,9 +116,9 @@ app.post('/api/user/brand', auth, admin, (req, res) => {
 
   brand.save((err, doc) => {
     if (err) {
-      const errRespnse = { success: false, error: err };
+      const errResponse = { success: false, error: err };
 
-      return res.json(errRespnse);
+      return res.json(errResponse);
     }
 
     const brandResponse = { success: true, brand: doc };
