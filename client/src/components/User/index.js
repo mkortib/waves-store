@@ -1,35 +1,32 @@
 import React, { Component } from 'react';
 import UserLayout from '../../hoc/user';
 import MyButton from '../utils/button';
+import Blank from './';
 
-class UserDashboard extends Component {
-    render() {
-        return (
-            <UserLayout>
-                <div className="">
-                    <div className="user_nfo_panel">
-                        <h1>User information</h1>
-                        <div className="">
-                            <span>name</span>
-                            <span>lastname</span>
-                            <span>email</span>
-                        </div>
-                        <MyButton
-                            type="default"
-                            title="Edit account info"
-                            linkTo="/user/user_profile"
-                        />
+const UserDashboard = ({ user }) => {
+    return (
+        <UserLayout>
+            <div className="">
+                <div className="user_nfo_panel">
+                    <h1>User information</h1>
+                    <div className="">
+                        <span>{user.userData.name}</span>
+                        <span>{user.userData.lastname}</span>
+                        <span>{user.userData.email}</span>
                     </div>
-                    <div className="user_nfo_panel">
-                        <h1>History purchases</h1>
-                        <div className="user_product_block_wrapper">
-                            history
-                        </div>
-                    </div>
+                    <MyButton
+                        type="default"
+                        title="Edit account info"
+                        linkTo="/user/user_profile"
+                    />
                 </div>
-            </UserLayout>
-        );
-    }
-}
+                <div className="user_nfo_panel">
+                    <h1>History purchases</h1>
+                    <div className="user_product_block_wrapper">history</div>
+                </div>
+            </div>
+        </UserLayout>
+    );
+};
 
 export default UserDashboard;
