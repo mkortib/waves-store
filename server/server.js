@@ -29,8 +29,8 @@ const { admin } = require('./middleware/admin');
 //==================
 
 // BY ARRIVAL - api/product/acricles?sortBy=createdAt&order=desc&limit=4
-
 // BY SELL - api/product/acricles?sortBy=sold&order=desc&limit=4&skip=5
+
 app.get('/api/product/articles', (req, res) => {
     const order = req.query.order ? req.query.order : 'asc';
     const sortBy = req.query.sortBy ? req.query.sortBy : '_id';
