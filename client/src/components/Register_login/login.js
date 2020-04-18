@@ -76,7 +76,6 @@ class Login extends Component {
                 return;
             }
             this.props.history.push('/user/dashboard');
-            console.log(response.payload);
         });
     };
 

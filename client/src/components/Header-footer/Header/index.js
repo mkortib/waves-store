@@ -43,7 +43,6 @@ class Header extends Component {
 
     logoutHandler() {
         this.props.dispatch(logoutUser()).then((response) => {
-            console.log(response);
             if (response.payload.success) {
                 this.props.history.push('/');
             }
