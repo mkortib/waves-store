@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import PageTop from '../utils/page_top';
+import LoadmoreCards from './loadmoreCards';
 import {
     getProductsToShop,
     getBrands,
@@ -11,6 +12,10 @@ import CollapseCheckbox from '../utils/collapseCheckbox';
 import CollapseRadio from '../utils/collapseRadio';
 
 import { frets, price } from '../utils/Form/fixed_categories';
+
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import faBars from '@fortawesome/fontawesome-free-solid/faBars';
+import faTh from '@fortawesome/fontawesome-free-solid/faTh';
 
 class Shop extends Component {
     state = {
@@ -72,8 +77,30 @@ class Shop extends Component {
             .then(() => this.setState({ skip: 0 }));
     }
 
+    LoadMoreCards() {
+        let skip = this.state.skip + this.state.limit;
+
+        this.props
+            .dispatch(
+                getProductsToShop(
+                    skip,
+                    this.state.limit,
+                    this.state.filters,
+                    this.props.products.toShop
+                )
+            )
+            .then(() => this.setState({ skip }));
+    }
+
+    handleGrid() {
+        this.setState({
+            grid: !this.state.grid ? 'grid_bars' : '',
+        });
+    }
+
     render() {
         const products = this.props.products;
+        console.log(products);
 
         return (
             <div>
@@ -115,7 +142,37 @@ class Shop extends Component {
                             />
                         </div>
 
-                        <div className="right">right</div>
+                        <div className="right">
+                            <div className="shop_options">
+                                <div className="shop_grids clear">
+                                    <div
+                                        className={`grid_btn ${
+                                            this.state.grid ? '' : 'active'
+                                        }`}
+                                        onClick={() => this.handleGrid()}
+                                    >
+                                        <FontAwesomeIcon icon={faTh} />
+                                    </div>
+                                    <div
+                                        className={`grid_btn ${
+                                            !this.state.grid ? '' : 'active'
+                                        }`}
+                                        onClick={() => this.handleGrid()}
+                                    >
+                                        <FontAwesomeIcon icon={faBars} />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="">
+                                <LoadmoreCards
+                                    grid={this.state.grid}
+                                    limit={this.state.limit}
+                                    size={products.toShopSize}
+                                    products={products.toShop}
+                                    loadMore={() => this.LoadMoreCards()}
+                                />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
