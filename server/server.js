@@ -81,6 +81,46 @@ app.post('/api/product/article', auth, admin, (req, res) => {
     });
 });
 
+app.post('/api/product/shop', (req, res) => {
+    const order = req.body.order ? req.body.order : 'desc';
+    const sortBy = req.body.sortBy ? req.body.sortBy : '_id';
+    const limit = req.body.limit ? parseInt(req.body.limit, 10) : 100;
+    const skip = parseInt(req.body.skip, 10);
+    let findArgs = {};
+
+    // eslint-disable-next-line no-restricted-syntax
+    for (let key in req.body.filters) {
+        if (req.body.filters[key].length) {
+            if (key === 'price') {
+                findArgs[key] = {
+                    $gte: req.body.filters[key][0],
+                    $lte: req.body.filters[key][1],
+                };
+            } else {
+                findArgs[key] = req.body.filters[key];
+            }
+        }
+    }
+
+    Product.find(findArgs)
+        .populate('brand')
+        .populate('wood')
+        .sort([[sortBy, order]])
+        .skip(skip)
+        .limit(limit)
+        .exec((err, articles) => {
+            if (err) {
+                return res.status(400).send(err);
+            }
+
+            const foundProducts = { size: articles.length, articles };
+
+            res.status(200).json(foundProducts);
+        });
+
+    res.status(200);
+});
+
 //==================
 //	    WOODS
 //==================
