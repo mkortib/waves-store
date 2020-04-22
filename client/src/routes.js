@@ -10,6 +10,7 @@ import Auth from './hoc/auth';
 import Shop from './components/Shop';
 import AddProduct from './components/User/Admin/add_product';
 import ManageCategories from './components/User/Admin/manage_categories';
+import ProductPage from './components/Product/index';
 
 const Routes = () => {
     return (
@@ -31,7 +32,7 @@ const Routes = () => {
                     exact
                     component={Auth(RegisterLogin, false)}
                 />
-                <Route path="/shop" exact component={Auth(Shop, false)} />
+                <Route path="/shop" exact component={Auth(Shop, null)} />
                 <Route
                     path="/admin/add_product"
                     exact
@@ -41,6 +42,11 @@ const Routes = () => {
                     path="/admin/manage_categories"
                     exact
                     component={Auth(ManageCategories, true)}
+                />
+                <Route
+                    path="/product_details/:id"
+                    exact
+                    component={Auth(ProductPage, null)}
                 />
             </Switch>
         </Layout>
