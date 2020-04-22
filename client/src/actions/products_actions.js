@@ -3,12 +3,15 @@ import {
     GET_PRODUCTS_BY_SELL,
     GET_PRODUCTS_BY_ARRIVAL,
     GET_BRANDS,
+    ADD_BRAND,
     GET_WOODS,
     GET_PRODUCTS_TO_SHOP,
     ADD_PRODUCT,
     CLEAR_PRODUCT,
+    ADD_WOOD,
 } from './types';
 
+import { USER_SERVER } from '../components/utils/misc';
 import { PRODUCT_SERVER } from '../components/utils/misc';
 
 export function getProductsByArrival() {
@@ -102,6 +105,42 @@ export function getBrands() {
 
     return {
         type: GET_BRANDS,
+        payload: request,
+    };
+}
+
+export function addBrand(dataToSubmit, existingBrands) {
+    const request = axios
+        .post(`/api/user/brand`, dataToSubmit)
+        .then((response) => {
+            let brands = [...existingBrands, response.data.brand];
+
+            return {
+                success: response.data.success,
+                brands,
+            };
+        });
+
+    return {
+        type: ADD_BRAND,
+        payload: request,
+    };
+}
+
+export function addWood(dataToSubmit, existingWoods) {
+    const request = axios
+        .post(`${PRODUCT_SERVER}/wood`, dataToSubmit)
+        .then((response) => {
+            let woods = [...existingWoods, response.data.wood];
+
+            return {
+                success: response.data.success,
+                woods,
+            };
+        });
+
+    return {
+        type: ADD_WOOD,
         payload: request,
     };
 }
