@@ -21,7 +21,7 @@ export default function (ComposedClass, reload, adminRoute = null) {
                     if (adminRoute && !user.isAdmin) {
                         this.props.history.push('/user/dashboard');
                     } else {
-                        if (!reload) {
+                        if (reload === false) {
                             this.props.history.push('/user/dashboard');
                         }
                     }
@@ -53,5 +53,5 @@ export default function (ComposedClass, reload, adminRoute = null) {
         };
     }
 
-    return connect(mapStateToProps, null)(AuthenticationCheck);
+    return connect(mapStateToProps)(AuthenticationCheck);
 }

@@ -299,6 +299,37 @@ app.get('/api/users/removeimage', auth, admin, (req, res) => {
     });
 });
 
+app.post('/api/users/addToCart', auth, (req, res) => {
+    User.findOne({ _id: req.user._id }).then((user) => {
+        let dublicate = false;
+
+        user.cart.forEach((item) => {
+            if (item.id === req.query.productId) {
+                dublicate = true;
+            }
+        });
+
+        if (dublicate) {
+        } else {
+            User.findOneAndUpdate(
+                { _id: req.user._id },
+                {
+                    $push: {
+                        cart: {
+                            id: mongoose.Types.ObjectId(req.query.productId),
+                            quantity: 1,
+                            date: Date.now(),
+                        },
+                    },
+                },
+                { new: true }
+            )
+                .then((user) => res.status(200).json(user.cart))
+                .catch((err) => res.json({ sucess: false, err }));
+        }
+    });
+});
+
 const port = process.env.PORT || 3002;
 
 app.listen(port, () => {

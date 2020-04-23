@@ -13,7 +13,12 @@ import ProdImg from './prodImg';
 class ProductPage extends Component {
     componentDidMount() {
         const { id } = this.props.match.params;
-        this.props.dispatch(getProductDetail(id));
+        this.props.dispatch(getProductDetail(id)).then((response) => {
+            if (!this.props.products.productDetail) {
+                // !!!!!!!!!!! CREATE 404 PAGE
+                console.log('no products');
+            }
+        });
 
         console.log(id);
     }
