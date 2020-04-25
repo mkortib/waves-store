@@ -7,6 +7,8 @@ import {
     getProductDetail,
 } from '../../actions/products_actions';
 
+import { addToCart } from '../../actions/user_actions';
+
 import ProdNfo from './prodNfo';
 import ProdImg from './prodImg';
 
@@ -19,12 +21,18 @@ class ProductPage extends Component {
                 console.log('no products');
             }
         });
-
-        console.log(id);
     }
 
     componentWillUnmount() {
         this.props.dispatch(clearProductDetail());
+    }
+
+    addToCartHandler(id) {
+        console.log(id);
+        this.props
+            .dispatch(addToCart(id))
+            .then((reponse) => console.log(reponse))
+            .catch((err) => console.log(err));
     }
 
     render() {

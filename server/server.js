@@ -304,12 +304,22 @@ app.post('/api/users/addToCart', auth, (req, res) => {
         let dublicate = false;
 
         user.cart.forEach((item) => {
-            if (item.id === req.query.productId) {
+            if (item.id.toString() === req.query.productId) {
                 dublicate = true;
             }
         });
 
         if (dublicate) {
+            User.findOneAndUpdate(
+                {
+                    _id: req.user._id,
+                    'cart.id': mongoose.Types.ObjectId(req.query.productId),
+                },
+                { $inc: { 'cart.$.quantity': 1 } },
+                { new: false }
+            )
+                .then((user) => res.status(200).json(user.cart))
+                .catch((err) => res.json({ sucess: false, err }));
         } else {
             User.findOneAndUpdate(
                 { _id: req.user._id },
