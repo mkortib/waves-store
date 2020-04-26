@@ -442,6 +442,16 @@ app.post('/api/users/successBuy', auth, (req, res) => {
         .catch((error) => res.json({ success: false, error }));
 });
 
+app.post('/api/users/update_profile', auth, (req, res) => {
+    User.findOneAndUpdate(
+        { _id: req.user._id },
+        { $set: req.body },
+        { new: true }
+    )
+        .then((doc) => res.status(200).send({ success: true }))
+        .catch((error) => res.json({ success: false, error }));
+});
+
 const port = process.env.PORT || 3002;
 
 app.listen(port, () => {
