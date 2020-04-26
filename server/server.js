@@ -29,6 +29,7 @@ const { Brand } = require('./models/brand');
 const { Wood } = require('./models/wood');
 const { Product } = require('./models/product');
 const { Payment } = require('./models/payment');
+const { Site } = require('./models/site');
 
 // Middlewares
 const { auth } = require('./middleware/auth');
@@ -449,6 +450,33 @@ app.post('/api/users/update_profile', auth, (req, res) => {
         { new: true }
     )
         .then((doc) => res.status(200).send({ success: true }))
+        .catch((error) => res.json({ success: false, error }));
+});
+
+//===================
+//		SITE
+//===================
+
+app.get('/api/site/site_data', (req, res) => {
+    Site.find({})
+        .then((site) => {
+            const { siteInfo } = site[0];
+
+            res.status(200).send(siteInfo);
+        })
+        .catch((error) => res.status(400).send(error));
+});
+
+app.post('/api/site/site_data', auth, (req, res) => {
+    Site.findOneAndUpdate(
+        { name: 'Site' },
+        { $set: { siteInfo: req.body } },
+        { new: true }
+    )
+        .then((doc) => {
+            const siteInfoResp = { success: true, siteInfo: doc.siteInfo };
+            res.status(200).send(siteInfoResp);
+        })
         .catch((error) => res.json({ success: false, error }));
 });
 
