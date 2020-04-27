@@ -1,0 +1,81 @@
+@import '../../../scss/common/media';
+@import '../../../scss/common/colors';
+@import '../../../scss/common/transition';
+
+.card-item {
+	cursor: pointer;
+	transition: all transition('normal');
+	position: relative;
+	padding: 1rem 0 1.5rem;
+
+	&:hover {
+		box-shadow: 0 .5rem 2rem 0 rgba(0,0,0,0.15);
+	}
+
+	&__image {
+		width: 27.8rem;
+		height: 27.8rem;
+		background-size: cover;
+	}
+
+	&__actions {
+		text-align: center;
+		font-size: 1.5rem;
+		line-height: 2rem;
+	}
+
+	&__tags {
+
+	}
+
+	&__description {
+
+	}
+}
+
+.tag-brand {
+
+}
+
+.tag-name {
+
+}
+
+.tag-price {
+	margin-top: 1rem;
+}
+
+.bag-link {
+	padding: 1rem 2rem;
+	text-align: center;
+	border-radius: 2.4rem;
+	font-size: 1.3rem;
+	font-weight: 500;
+	display: flex;
+	background-color: color('yellow');
+	transition: background-color transition('normal');
+	align-items: center;
+	
+	svg {
+		margin-left: .8rem;
+	}
+
+	&:hover {
+		background-color: color('green');
+	}
+}
+
+.card-item__add {
+	opacity: 0;
+	visibility: hidden;
+	position: absolute;
+	left: 50%;
+	top: 70%;
+	transform: translateX(-50%);
+	transition: all transition('normal');
+
+	.card-item:hover & {
+		opacity: 1;
+		visibility: visible;
+	}
+}

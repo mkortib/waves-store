@@ -1,0 +1,111 @@
+@import '../../../scss/common/colors';
+@import '../../../scss/common/media';
+@import '../../../scss/common/transition';
+@import '../../../scss/common/z-index';
+
+.footer {
+	background-size: cover;
+	background-position: center;
+	color: color('white');
+	padding: 5rem 0;
+}
+
+.footer-top {
+	display: flex;
+	justify-content: space-between;
+}
+
+.payment-methods {
+	display: flex;
+	align-items: center;
+
+	img {
+		width: 15rem;
+	}
+}
+
+.footer-middle {
+	display: flex;
+	border-top: .1rem solid rgba(255,255,255,0.1);
+	border-bottom: .1rem solid rgba(255,255,255,0.1);
+	margin-top: 4rem;
+
+	&__right,
+	&__left {
+		width: 50%;
+	}
+
+	&__left {
+		padding: 4rem 3rem 4rem 0;
+		border-right: .1rem solid rgba(255,255,255,0.1);
+	}
+
+	&__right {
+		padding: 4rem 0rem 4rem 3rem;
+	}
+}
+
+.contact-info-label,
+.site-info-label {
+	color: color('white');
+	font-size: 2rem;
+	font-weight: 900;
+	text-transform: capitalize;
+	margin-bottom: 1.5rem;
+}
+
+.business-info {
+	columns: 2;
+	
+	&__item {
+		display: flex;
+		align-items: center;
+		color: #999;
+		font-size: 1.4rem;
+		margin-bottom: 2rem;
+	}
+
+	.icon-wrap {
+		border: .1rem solid #999;
+		width: 3rem;
+		height: 3rem;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.nfo-block {
+		margin-left: 2rem;
+	}
+}
+
+.site-info-descr {
+	color: #999;
+	font-size: 1.4rem;
+
+	p {
+		margin-bottom: 1rem;
+	}
+}
+
+.footer-bottom {
+	margin-top: 3rem;
+	text-align: center;
+}
+
+.copyright {
+	color: #999;
+	font-size: 1.4rem;
+}
+
+.powered-by {
+	font-weight: 900;
+	margin-top: 1rem;
+	display: inline-block;
+
+	i {
+		font-size: 4rem;
+		font-family: 'Kaushan Script', cursive;
+	}
+}

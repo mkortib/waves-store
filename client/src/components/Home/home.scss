@@ -1,0 +1,125 @@
+@import '../../scss/common/media';
+@import '../../scss/common/colors';
+@import '../../scss/common/transition';
+
+.home-slider {
+	padding-top: 7.5rem;
+}
+
+.home-slide {
+	&__image {
+		display: flex;
+		align-items: center;
+		background-size: cover;
+	}
+
+	&__actions {
+		text-align: center;
+		position: relative;
+		transform: translateY(60%);
+		opacity: 0;
+		transition: all 1s ease;
+
+		.slick-slide.slick-active & {
+			transform: translateY(0);
+			opacity: 1;
+		}
+	}
+
+	&__title {
+		font-weight: 600;
+		font-size: 12rem;
+		color: color('white');
+		letter-spacing: -1rem;
+	}
+
+	&__description {
+		font-size: 1.8rem;
+		color: color('white');
+	}
+
+	&__btn {
+		background-color: color('yellow');
+		color: color('white');
+		font-weight: 600;
+		border-radius: 2.4rem;
+		padding: 1rem 3rem;
+		font-size: 1.3rem;
+		letter-spacing: -.05rem;
+		margin-top: 2rem;
+		display: inline-block;
+		transition: background-color transition('normal');
+		text-transform: uppercase;
+
+		&:hover {
+			background-color: color('green');
+		}
+	}
+}
+
+/*
+* PROMOTION BANNER
+*/
+
+.home-promotion {
+	text-align: center;
+	
+	&__img {
+		padding: 6rem 0;
+		background-size: cover;
+		background-position: center;
+	}
+
+	&__title {
+		letter-spacing: -.4rem;
+		font-size: 6rem;
+		font-weight: 900;
+		margin-bottom: 1rem;
+	}
+
+	&__description {
+		color: #666;
+		font-size: 1.8rem;
+		font-weight: 400;
+		line-height: 1.6;
+		max-width: 75rem;
+		margin: 0 auto 6rem;
+	}
+
+	&__guitar {
+		img {
+			max-width: 100%;
+			display: block;
+			margin: auto;
+		}
+	}
+
+	&__sale {
+		font-size: 3rem;
+		font-weight: 500;
+		margin-bottom: 3rem;
+	}
+}
+
+.sale-number {
+	color: color('orange');
+	display: inline-block;
+	margin-right: 1rem;
+}
+
+.link-default {
+	background-color: color('yellow');
+    color: color('black');
+    font-weight: 600;
+    border-radius: 2.4rem;
+    padding: 1rem 3rem;
+    font-size: 1.3rem;
+    letter-spacing: -.05rem;
+    display: inline-block;
+    transition: background-color transition('normal');
+	text-transform: uppercase;
+	
+	&:hover {
+		background-color: color('green');
+	}
+}

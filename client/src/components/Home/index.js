@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import HomeSlider from './home_slider';
 import HomePromotion from './home_promotion';
-import CardBlock from '../utils/cart_block';
+import CardBlock from '../utils/CardBlock/card-block';
 import { connect } from 'react-redux';
 
 import {
@@ -9,6 +9,7 @@ import {
     getProductsBySell,
 } from '../../actions/products_actions';
 
+import './home.scss';
 class Home extends Component {
     componentDidMount() {
         this.props.dispatch(getProductsBySell());
@@ -17,11 +18,12 @@ class Home extends Component {
 
     render() {
         return (
-            <div className="">
+            <div className="home-cnt">
                 <HomeSlider />
                 <CardBlock
                     list={this.props.products.bySell}
                     title="Best Selling Guitars"
+                    history={this.props.history}
                 />
                 <HomePromotion />
                 <CardBlock

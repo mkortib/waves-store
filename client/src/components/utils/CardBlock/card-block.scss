@@ -1,0 +1,20 @@
+@import '../../../scss/common/media';
+@import '../../../scss/common/colors';
+@import '../../../scss/common/transition';
+
+.cards-block {
+	margin-top: 4rem;
+}
+
+.cards-block__title {
+	font-size: 6rem;
+	font-weight: 900;
+	letter-spacing: -.4rem;
+	text-align: center;
+}
+
+.cards-block__cards {
+	display: flex;
+	justify-content: space-between;
+	margin: 4rem 0;
+}

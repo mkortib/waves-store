@@ -1,0 +1,146 @@
+@import '../../../scss/common/colors';
+@import '../../../scss/common/media';
+@import '../../../scss/common/transition';
+@import '../../../scss/common/z-index';
+
+.header {
+	position: fixed;
+	width: 100%;
+	z-index: z-index('100');
+
+	&--black {
+		background-color: color("black-2");
+	}
+
+	&.header--fixed {
+		opacity: .9;
+	}
+
+	&__container {
+		color: color('white');
+		max-width: 120rem;
+		margin: auto;
+		padding: 2rem 2rem;
+		display: flex;
+		justify-content: space-between;
+		transition: all transition('normal');
+
+		.header--fixed & {
+			padding: 1rem 2rem;
+		}
+	}
+
+	&__navs {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		margin-left: 0;
+		
+		@include media('sm') {
+			width: 100%;
+			margin-left: 10%;
+		}
+	}
+} 
+
+.user-nav {
+	display: flex;
+	align-items: center;
+
+	.header-link--user {
+		display: none;
+
+		@include media('sm') {
+			display: inline-block;
+		}		
+	}
+}
+
+.main-nav {
+	display: none;
+	align-items: center;
+	
+	@include media('sm') {
+		display: flex;
+	} 
+}
+
+.toggle-menu {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	&__btn {
+		border-radius: 20rem
+	}
+
+	svg {
+		path {
+			fill: #999;
+		}
+	}
+}
+
+.header-link {
+	margin-right: 1rem;
+	font-size: 1.4rem;
+	text-transform: uppercase;
+	transition: color transition("normal");
+	cursor: pointer;
+
+	&:hover {
+		color: color('yellow');
+	}
+}
+
+.header-cart {
+	order: 3;
+	width: 4rem;
+	height: 4rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	border-radius: 50%;
+	background-color: color('yellow');
+	color: color('black');
+	margin-left: 2rem;
+}
+
+.header-cart__icon {
+	font-size: 1.5rem;
+	padding: 1rem;
+}
+
+.header-cart__counter {
+	position: absolute;
+	width: 2rem;
+	height: 2rem;
+	top: -.5rem;
+	right: -.5rem;
+	background-color: color('green');
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: color('white');
+	border-radius: 50%;
+	font-weight: 700;
+}
+
+.logo {
+	display: flex;
+	align-items: center;
+	font-family: 'Oleo Script Swash Caps', cursive;
+	color: color('white');
+	font-size: 4rem;
+	font-weight: 200;
+
+	svg {
+		margin-top: -1rem;
+		margin-right: 1rem;
+	}
+}
+
+.header__links {
+	display: flex;
+} 

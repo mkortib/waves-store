@@ -5,14 +5,21 @@ import MyButton from '../utils/button';
 const HomeSlider = (props) => {
     const slides = [
         {
-            img: '/images/featured/featured_home.jpg',
-            lineOne: 'Fender',
-            lineTwo: 'Custom shop',
+            img: '/images/featured/home-slide-1.jpg',
+            lineOne: 'Limited Edition',
+            lineTwo: 'Start Playing Guitar Today',
             linkTitle: 'Shop now',
             linkTo: '/shop',
         },
         {
-            img: '/images/featured/featured_home_2.jpg',
+            img: '/images/featured/home-slide-2.jpg',
+            lineOne: 'B-Stock',
+            lineTwo: 'Awesome descounts',
+            linkTitle: 'View offers',
+            linkTo: '/shop',
+        },
+        {
+            img: '/images/featured/home-slide-3.jpg',
             lineOne: 'B-Stock',
             lineTwo: 'Awesome descounts',
             linkTitle: 'View offers',
@@ -23,7 +30,9 @@ const HomeSlider = (props) => {
     const settings = {
         dots: false,
         infinite: true,
-        speed: 500,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        speed: 1000,
         slideToShow: 1,
         slideToScroll: 1,
         arrows: false,
@@ -34,26 +43,28 @@ const HomeSlider = (props) => {
             ? slides.map((item, i) => (
                   <div key={i}>
                       <div
-                          className="featured_image"
+                          className="home-slide__image"
                           style={{
                               background: `url(${item.img})`,
-                              height: `${window.innerHeight}px`,
+                              height: `63rem`,
                           }}
                       >
-                          <div className="featured_action">
-                              <div className="tag title">{item.lineOne}</div>
-                              <div className="tag low_title">
-                                  {item.lineTwo}
-                              </div>
-                              <div className="">
-                                  <MyButton
-                                      type="default"
-                                      title={item.linkTitle}
-                                      linkTo={item.linkTo}
-                                      addStyle={{
-                                          margin: '10px 0 0 0',
-                                      }}
-                                  />
+                          <div className="cm-container">
+                              <div className="home-slide__actions">
+                                  <div className="home-slide__title">
+                                      {item.lineOne}
+                                  </div>
+                                  <div className="home-slide__description">
+                                      {item.lineTwo}
+                                  </div>
+                                  <div className="">
+                                      <MyButton
+                                          type="default"
+                                          title={item.linkTitle}
+                                          linkTo={item.linkTo}
+                                          altClass="home-slide__btn"
+                                      />
+                                  </div>
                               </div>
                           </div>
                       </div>
@@ -62,7 +73,7 @@ const HomeSlider = (props) => {
             : null;
 
     return (
-        <div className="featured_container">
+        <div className="home-slider">
             <Slider {...settings}>{generateSlides()}</Slider>
         </div>
     );

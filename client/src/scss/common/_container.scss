@@ -1,0 +1,16 @@
+@mixin cm-containers {
+	max-width: 120rem;
+	margin: auto;
+}
+
+.cm-container {
+	max-width: 120rem;
+	@include cm-containers;
+}
+
+.cm-container--full-width {
+	@include cm-containers;
+}
+
+
+

@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from '../utils/card';
+import Card from '../utils/Card/card';
 
 const CardBlockShop = (props) => {
     const renderCards = (list) =>

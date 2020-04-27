@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
-import MyButton from './button';
+import MyButton from '../button';
 
 import { connect } from 'react-redux';
-import { addToCart } from '../../actions/user_actions';
+import { addToCart } from '../../../actions/user_actions';
+
+import { withRouter } from 'react-router-dom';
+
+import './card.scss';
 
 class Card extends Component {
     renderCardImage(images) {
         if (!images.length) {
-            return '/images/image_not_availble.png';
+            // return '/images/image_not_availble.png';
+            return '/images/test-img.png';
         }
 
         return images[0].url;
@@ -15,30 +20,35 @@ class Card extends Component {
 
     render() {
         const props = this.props;
+        const prodId = this.props._id;
 
+        console.log('Card', props);
         return (
-            <div className={`card_item_wrapper ${props.grid}`}>
+            <div
+                className={`card-item ${props.grid}`}
+                onClick={() => props.history.push(`/product_details/${prodId}`)}
+            >
                 <div
-                    className="image"
+                    className="card-item__image"
                     style={{
-                        background: `url(${this.renderCardImage(
+                        backgroundImage: `url(${this.renderCardImage(
                             props.images
-                        )}) no-repeat`,
+                        )})`,
                     }}
                 ></div>
-                <div className="action_container">
-                    <div className="tags">
-                        <div className="brand">{props.brand.name}</div>
-                        <div className="name">{props.name}</div>
-                        <div className="name">${props.price}</div>
+                <div className="card-item__actions">
+                    <div className="card-item__tags">
+                        <div className="tag-brand">{props.brand.name}</div>
+                        <div className="tag-name">{props.name}</div>
+                        <div className="tag-price">$ {props.price}</div>
                     </div>
                     {props.grid ? (
-                        <div className="description">
+                        <div className="card-item__description">
                             <p>{props.description}</p>
                         </div>
                     ) : null}
                     <div className="actions">
-                        <div className="button_wrapp">
+                        {/* <div className="button_wrapp">
                             <MyButton
                                 type="default"
                                 altClass="card_link"
@@ -48,9 +58,9 @@ class Card extends Component {
                                     margin: '10px 0 0 0',
                                 }}
                             />
-                        </div>
+                        </div> */}
 
-                        <div className="button_wrapp">
+                        <div className="card-item__add">
                             <MyButton
                                 type="bag_link"
                                 runAction={() => {
@@ -75,4 +85,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps)(Card);
+export default connect(mapStateToProps)(withRouter(Card));

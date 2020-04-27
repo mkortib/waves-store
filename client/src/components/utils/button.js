@@ -13,7 +13,7 @@ const MyButton = (props) => {
                 template = (
                     <Link
                         className={
-                            !props.altClass ? `link_default` : props.altClass
+                            !props.altClass ? `link-default` : props.altClass
                         }
                         to={props.linkTo}
                         {...props.addStyle}
@@ -24,7 +24,8 @@ const MyButton = (props) => {
                 break;
             case 'bag_link':
                 template = (
-                    <div className="bag_link" onClick={() => props.runAction()}>
+                    <div className="bag-link" onClick={() => props.runAction()}>
+                        Add to cart
                         <FontAwesomeIcon icon={faShoppingBag} />
                     </div>
                 );
@@ -36,8 +37,8 @@ const MyButton = (props) => {
                         className="add_to_cart_link"
                         onClick={() => props.runAction()}
                     >
-                        <FontAwesomeIcon icon={faShoppingBag} />
                         Add to cart
+                        <FontAwesomeIcon icon={faShoppingBag} />
                     </div>
                 );
                 break;
@@ -48,7 +49,7 @@ const MyButton = (props) => {
         return template;
     };
 
-    return <div className="my_link">{buttons()}</div>;
+    return <div className="my-link">{buttons()}</div>;
 };
 
 export default MyButton;
