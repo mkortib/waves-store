@@ -6,15 +6,16 @@ import faAngleUp from '@fortawesome/fontawesome-free-solid/faAngleUp';
 
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
-import Checkbox from '@material-ui/core/Checkbox';
 import Collapse from '@material-ui/core/Collapse';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
-class CollapseCheckbox extends Component {
+class CollapseRadio extends Component {
     state = {
         open: false,
-        checked: [],
+        value: '0',
     };
 
     componentDidMount() {
@@ -37,44 +38,31 @@ class CollapseCheckbox extends Component {
         );
     }
 
+    handleChange(event) {
+        const radioValue = event.target.value;
+
+        this.setState({ value: radioValue }, () => {
+            this.props.handleFilters(radioValue);
+        });
+    }
+
     renderList() {
         return this.props.list
             ? this.props.list.map((value) => (
-                  <ListItem key={value._index} style={{ padding: '10px 0' }}>
-                      <ListItemText primary={value.name} />
-                      <ListItemSecondaryAction>
-                          <Checkbox
-                              color="primary"
-                              onChange={this.handleToggle(value._id)}
-                              checked={
-                                  this.state.checked.indexOf(value._id) !== -1
-                              }
-                          />
-                      </ListItemSecondaryAction>
-                  </ListItem>
+                  <FormControlLabel
+                      key={value._id}
+                      value={`${value._id}`}
+                      control={<Radio />}
+                      label={value.name}
+                      className="check-radio-label"
+                  />
               ))
             : null;
     }
 
-    handleToggle = (value) => () => {
-        const { checked } = this.state;
-        const currentIndex = checked.indexOf(value);
-        const newChecked = [...checked];
-
-        if (currentIndex === -1) {
-            newChecked.push(value);
-        } else {
-            newChecked.splice(currentIndex, 1);
-        }
-
-        this.setState({ checked: newChecked }, () => {
-            this.props.handleFilters(newChecked);
-        });
-    };
-
     render() {
         return (
-            <div className="collapse_items_wrapper">
+            <div className="">
                 <List style={{ borderBottom: '1px solid #dbdbdb' }}>
                     <ListItem
                         onClick={() => this.handleClick()}
@@ -82,13 +70,20 @@ class CollapseCheckbox extends Component {
                     >
                         <ListItemText
                             primary={this.props.title}
-                            className="collapse_title"
+                            className="collapse-title"
                         />
                         {this.handleAngle()}
                     </ListItem>
                     <Collapse in={this.state.open} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
-                            {this.renderList()}
+                            <RadioGroup
+                                aria-label="prices"
+                                name="prices"
+                                value={this.state.value}
+                                onChange={(event) => this.handleChange(event)}
+                            >
+                                {this.renderList()}
+                            </RadioGroup>
                         </List>
                     </Collapse>
                 </List>
@@ -97,4 +92,4 @@ class CollapseCheckbox extends Component {
     }
 }
 
-export default CollapseCheckbox;
+export default CollapseRadio;

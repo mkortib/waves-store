@@ -1,21 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import PageTop from '../utils/page_top';
+import PageTop from '../utils/page-top';
 import LoadmoreCards from './loadmoreCards';
 import {
     getProductsToShop,
     getBrands,
     getWoods,
 } from '../../actions/products_actions';
-import CollapseCheckbox from '../utils/collapseCheckbox';
-import CollapseRadio from '../utils/collapseRadio';
+import CollapseCheckbox from '../utils/collapse-checkbox';
+import CollapseRadio from '../utils/collapse-radio';
 
 import { frets, price } from '../utils/Form/fixed_categories';
 
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faBars from '@fortawesome/fontawesome-free-solid/faBars';
 import faTh from '@fortawesome/fontawesome-free-solid/faTh';
+
+import './shop.scss';
 
 class Shop extends Component {
     state = {
@@ -94,7 +96,7 @@ class Shop extends Component {
 
     handleGrid() {
         this.setState({
-            grid: !this.state.grid ? 'grid_bars' : '',
+            grid: !this.state.grid ? 'grid--bars' : '',
         });
     }
 
@@ -102,11 +104,11 @@ class Shop extends Component {
         const products = this.props.products;
 
         return (
-            <div>
+            <div className="category">
                 <PageTop title="Browse Products" />
-                <div className="container">
-                    <div className="shop_wrapper">
-                        <div className="left">
+                <div className="cm-container">
+                    <div className="category__wrapper">
+                        <div className="category__filters">
                             <CollapseCheckbox
                                 initState={true}
                                 title="Brands"
@@ -133,7 +135,7 @@ class Shop extends Component {
                             />
                             <CollapseRadio
                                 initState={true}
-                                title="Proce"
+                                title="Price"
                                 list={price}
                                 handleFilters={(filters) =>
                                     this.handleFilters(filters, 'price')
@@ -141,28 +143,34 @@ class Shop extends Component {
                             />
                         </div>
 
-                        <div className="right">
-                            <div className="shop_options">
-                                <div className="shop_grids clear">
+                        <div className="category__products">
+                            <div className="category__view">
+                                <div className="view-choose">
                                     <div
-                                        className={`grid_btn ${
+                                        className={`view-choose__btn ${
                                             this.state.grid ? '' : 'active'
                                         }`}
                                         onClick={() => this.handleGrid()}
                                     >
-                                        <FontAwesomeIcon icon={faTh} />
+                                        <FontAwesomeIcon
+                                            icon={faTh}
+                                            className="icon-view"
+                                        />
                                     </div>
                                     <div
-                                        className={`grid_btn ${
+                                        className={`view-choose__btn ${
                                             !this.state.grid ? '' : 'active'
                                         }`}
                                         onClick={() => this.handleGrid()}
                                     >
-                                        <FontAwesomeIcon icon={faBars} />
+                                        <FontAwesomeIcon
+                                            icon={faBars}
+                                            className="icon-view"
+                                        />
                                     </div>
                                 </div>
                             </div>
-                            <div className="">
+                            <div className="products">
                                 <LoadmoreCards
                                     grid={this.state.grid}
                                     limit={this.state.limit}

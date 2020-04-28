@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from '../utils/Card/card';
+import Card from './Card/card';
 
 const CardBlockShop = (props) => {
     const renderCards = (list) =>
@@ -10,12 +10,12 @@ const CardBlockShop = (props) => {
             : null;
 
     return (
-        <div className="card_block_shop">
-            <div className="">
-                <div className="">
+        <div className="card-block-shop">
+            <div className="card-block-shop__cnt">
+                <div className="card-block-shop__center">
                     {props.list ? (
                         props.list.length === 0 ? (
-                            <div className="no_result">Sorry, no results</div>
+                            <div className="no-result">Sorry, no results</div>
                         ) : null
                     ) : null}
                     {renderCards(props.list)}

@@ -7,6 +7,7 @@
 	transition: all transition('normal');
 	position: relative;
 	padding: 1rem 0 1.5rem;
+	width: 24%;
 
 	&:hover {
 		box-shadow: 0 .5rem 2rem 0 rgba(0,0,0,0.15);
@@ -16,6 +17,7 @@
 		width: 27.8rem;
 		height: 27.8rem;
 		background-size: cover;
+		max-width: 100%;
 	}
 
 	&__actions {

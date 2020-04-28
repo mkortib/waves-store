@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PageTop from '../utils/page_top';
+import PageTop from '../utils/page-top';
 import { connect } from 'react-redux';
 
 import {

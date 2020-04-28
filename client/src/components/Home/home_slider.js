@@ -46,7 +46,7 @@ const HomeSlider = (props) => {
                           className="home-slide__image"
                           style={{
                               background: `url(${item.img})`,
-                              height: `63rem`,
+                              height: `65rem`,
                           }}
                       >
                           <div className="cm-container">

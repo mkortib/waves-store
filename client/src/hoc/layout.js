@@ -17,7 +17,12 @@ class Layout extends Component {
         return (
             <div>
                 <Header />
-                <div className="page-container">{this.props.children}</div>
+                <div
+                    className="page-container"
+                    style={{ padding: '75px 0 40px' }}
+                >
+                    {this.props.children}
+                </div>
                 <Footer data={this.props.site} />
             </div>
         );
