@@ -8,6 +8,12 @@
 		display: flex;
 		align-items: center;
 		background-size: cover;
+		background-position: center;
+		height: 50rem;
+
+		@include media('sm') {
+			height: 65rem;
+		}
 	}
 
 	&__actions {
@@ -25,14 +31,26 @@
 
 	&__title {
 		font-weight: 600;
-		font-size: 12rem;
+		font-size: 7rem;
 		color: color('white');
-		letter-spacing: -1rem;
+		letter-spacing: -.5rem;
+		line-height: 1;
+		
+		@include media('sm') {
+			line-height: inherit;
+			letter-spacing: -1rem;
+			font-size: 12rem;
+		}
 	}
 
 	&__description {
 		font-size: 1.8rem;
 		color: color('white');
+		margin-top: 1rem;
+
+		@include media('sm') {
+			margin-top: 0;
+		}
 	}
 
 	&__btn {
@@ -62,25 +80,41 @@
 	text-align: center;
 	
 	&__img {
-		padding: 6rem 0;
+		padding: 4rem 0 5rem;
 		background-size: cover;
 		background-position: center;
+
+		@include media('lg') {
+			padding: 6rem 0;
+		}
 	}
 
 	&__title {
 		letter-spacing: -.4rem;
 		font-size: 6rem;
 		font-weight: 900;
-		margin-bottom: 1rem;
+		margin-bottom: 2rem;
+		line-height: 1.2;
+
+		@include media('lg') {
+			margin-bottom: 1rem;
+			line-height: inherit;
+		}
 	}
 
 	&__description {
 		color: #666;
-		font-size: 1.8rem;
+		font-size: 1.6rem;
 		font-weight: 400;
 		line-height: 1.6;
 		max-width: 75rem;
-		margin: 0 auto 6rem;
+		margin: 0 auto 4rem;
+
+		@include media('lg') {
+			font-size: 1.8rem;
+			line-height: inherit;
+			margin: 0 auto 6rem;
+		}
 	}
 
 	&__guitar {
@@ -95,6 +129,12 @@
 		font-size: 3rem;
 		font-weight: 500;
 		margin-bottom: 3rem;
+		margin-top: 2rem;
+
+		@include media('lg') {
+			margin-bottom: 3rem;
+			margin-top: inherit;
+		}
 	}
 }
 

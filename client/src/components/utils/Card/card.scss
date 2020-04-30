@@ -18,6 +18,16 @@
 		height: 27.8rem;
 		background-size: cover;
 		max-width: 100%;
+		background-position: center;
+
+		.cards-block & {
+			width: 100%;
+			margin: 3rem 0;
+
+			@include media('lg') {
+				width: 27.8rem;
+			}
+		}		
 	}
 
 	&__actions {
@@ -33,6 +43,16 @@
 	&__description {
 
 	}
+
+	.cards-block & {
+		width: 80%;
+		margin: auto;
+
+		@include media('lg') {
+			width: 24%;
+			margin: inherit;
+		}
+	}	
 }
 
 .tag-brand {
