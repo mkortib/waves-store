@@ -4,24 +4,44 @@
 @import '../../scss/common/z-index';
 
 .category {
+	padding-top: 2.5rem;
 
 	&__wrapper {
 		display: flex;
+		flex-wrap: wrap;
+
+		@include media('sm') {
+			flex-wrap: inherit;
+		}
 	}
 	
 	&__filters {
-		width: 25%;
-		margin-right: 2%;
+		width: 100%;
 		border: .1rem solid #eaeaea; 
 		padding: 0 2rem;
 		color: color('grey');
 		font-size: 1.4rem;
 		font-family: 'Poppins'!important;
 		height: -webkit-fill-available;
+
+		@include media('sm') {
+			width: 25%;
+			margin-right: 2%;
+		}
 	}
 	
 	&__products {
-		width: 75%;
+		width: 100%;
+		margin-top: 2rem;
+
+		@include media('sm') {
+			width: 75%;
+			margin-top: 0;
+		}
+	}
+
+	@include media('sm') {
+		padding-top: inherit;
 	}
 }
 
@@ -90,6 +110,7 @@
 	.card-item__add {
 		transition: none;
 		max-width: 15rem;
+		width: 100%;
 	}
 
 	.bag-link {
@@ -99,10 +120,18 @@
 
 	.card-item {
 		margin-bottom: 2rem;
-		width: 31%;
+		width: 100%;
 		transition: none;
 		border: .1rem solid rgba(color('grey'), .2);
 		border-radius: .2rem;
+
+		&__image {
+			margin: auto;
+
+			@include media('sm') {
+				margin: inherit;
+			}
+		}
 		
 		&:hover {
 			box-shadow: inherit;
@@ -160,11 +189,15 @@
 				margin-bottom: 2rem;
 			}
 		}
+
+		@include media('sm') {
+			width: 31%;
+		}
 	} 
 }
 
 .load-more {
-	margin: 4rem auto 0;
+	margin: 2rem auto 0;
 	max-width: 20rem;
 	text-align: center;
 	font-size: 1.8rem;
@@ -174,4 +207,8 @@
 	padding: 1.5rem 4rem;
 	border-radius: 4rem;
 	cursor: pointer;
+
+	@include media('lg') {
+		margin: 4rem auto 0;
+	}
 }
