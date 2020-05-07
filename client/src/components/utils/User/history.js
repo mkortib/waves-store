@@ -19,7 +19,7 @@ const HistoryBlock = (props) => {
             : null;
 
     return (
-        <div className="history_blocks">
+        <div className="history-blocks">
             <table>
                 <thead>
                     <tr>

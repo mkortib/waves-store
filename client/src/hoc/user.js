@@ -35,25 +35,25 @@ const admin = [
 const UserLayout = (props) => {
     const generateLinks = (links) =>
         links.map((item, i) => (
-            <Link to={item.linkTo} key={i}>
+            <Link className="link" to={item.linkTo} key={i}>
                 {item.name}
             </Link>
         ));
 
     return (
-        <div className="container">
-            <div className="user_container">
-                <div className="user_left_nav">
-                    <h2>My account</h2>
+        <div className="cm-container">
+            <div className="user">
+                <div className="user__left-nav">
+                    <h2 className="user-nav-title">My account</h2>
                     <div className="links">{generateLinks(links)}</div>
                     {props.user.userData.isAdmin ? (
                         <div className="">
-                            <h2>Admin</h2>
+                            <h2 className="user-nav-title">Admin</h2>
                             <div className="links">{generateLinks(admin)}</div>
                         </div>
                     ) : null}
                 </div>
-                <div className="user_right">{props.children}</div>
+                <div className="user__right">{props.children}</div>
             </div>
         </div>
     );

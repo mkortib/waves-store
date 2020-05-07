@@ -114,8 +114,8 @@ class UpdatePersonalNfo extends Component {
     render() {
         return (
             <form onSubmit={(event) => this.submitForm(event)}>
-                <h2>Personal information</h2>
-                <div className="form_block_two">
+                <h2 className="update-user-title">Personal information</h2>
+                <div className="form-block-two">
                     <div className="block">
                         <FormField
                             id={'name'}
@@ -148,7 +148,10 @@ class UpdatePersonalNfo extends Component {
                         </div>
                     ) : null}
 
-                    <button onClick={(event) => this.submitForm(event)}>
+                    <button
+                        className="link-default link-default--user"
+                        onClick={(event) => this.submitForm(event)}
+                    >
                         Update Personal info
                     </button>
                 </div>

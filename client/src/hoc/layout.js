@@ -6,6 +6,8 @@ import Footer from '../components/Header-footer/Footer';
 import { connect } from 'react-redux';
 import { getSiteData } from '../actions/site_actions';
 
+import './user-layout.scss';
+
 class Layout extends Component {
     componentDidMount() {
         if (Object.keys(this.props.site).length === 0) {

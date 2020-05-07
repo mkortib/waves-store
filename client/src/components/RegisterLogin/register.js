@@ -140,87 +140,79 @@ class Register extends Component {
 
     render() {
         return (
-            <div className="page_wrapper">
-                <div className="container">
-                    <div className="register_login_container">
-                        <div className="left">
-                            <form onSubmit={(event) => this.submitForm(event)}>
-                                <h2>Personal information</h2>
-                                <div className="form_block_two">
-                                    <div className="block">
-                                        <FormField
-                                            id={'name'}
-                                            formdata={this.state.formData.name}
-                                            change={(element) =>
-                                                this.updateForm(element)
-                                            }
-                                        />
-                                    </div>
-                                    <div className="block">
-                                        <FormField
-                                            id={'lastname'}
-                                            formdata={
-                                                this.state.formData.lastname
-                                            }
-                                            change={(element) =>
-                                                this.updateForm(element)
-                                            }
-                                        />
-                                    </div>
-                                </div>
-                                <div className="">
+            <div className="register-container">
+                <div className="cm-container">
+                    <div className="left">
+                        <form onSubmit={(event) => this.submitForm(event)}>
+                            <h2 className="title">Personal information</h2>
+                            <div className="form-block-two">
+                                <div className="block">
                                     <FormField
-                                        id={'email'}
-                                        formdata={this.state.formData.email}
+                                        id={'name'}
+                                        formdata={this.state.formData.name}
                                         change={(element) =>
                                             this.updateForm(element)
                                         }
                                     />
                                 </div>
-                                <h2>Verify password</h2>
-                                <div className="form_block_two">
-                                    <div className="block">
-                                        <FormField
-                                            id={'password'}
-                                            formdata={
-                                                this.state.formData.password
-                                            }
-                                            change={(element) =>
-                                                this.updateForm(element)
-                                            }
-                                        />
-                                    </div>
-                                    <div className="block">
-                                        <FormField
-                                            id={'confirmPassword'}
-                                            formdata={
-                                                this.state.formData
-                                                    .confirmPassword
-                                            }
-                                            change={(element) =>
-                                                this.updateForm(element)
-                                            }
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="">
-                                    {this.state.formError ? (
-                                        <div className="error_label">
-                                            Please check your data
-                                        </div>
-                                    ) : null}
-
-                                    <button
-                                        onClick={(event) =>
-                                            this.submitForm(event)
+                                <div className="block">
+                                    <FormField
+                                        id={'lastname'}
+                                        formdata={this.state.formData.lastname}
+                                        change={(element) =>
+                                            this.updateForm(element)
                                         }
-                                    >
-                                        Create an account
-                                    </button>
+                                    />
                                 </div>
-                            </form>
-                        </div>
+                            </div>
+                            <div className="email-field">
+                                <FormField
+                                    id={'email'}
+                                    formdata={this.state.formData.email}
+                                    change={(element) =>
+                                        this.updateForm(element)
+                                    }
+                                />
+                            </div>
+                            <h2 className="title">Verify password</h2>
+                            <div className="form-block-two">
+                                <div className="block">
+                                    <FormField
+                                        id={'password'}
+                                        formdata={this.state.formData.password}
+                                        change={(element) =>
+                                            this.updateForm(element)
+                                        }
+                                    />
+                                </div>
+                                <div className="block">
+                                    <FormField
+                                        id={'confirmPassword'}
+                                        formdata={
+                                            this.state.formData.confirmPassword
+                                        }
+                                        change={(element) =>
+                                            this.updateForm(element)
+                                        }
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="">
+                                {this.state.formError ? (
+                                    <div className="error_label">
+                                        Please check your data
+                                    </div>
+                                ) : null}
+
+                                <button
+                                    onClick={(event) => this.submitForm(event)}
+                                    className="link-default link-default--register"
+                                >
+                                    Create an account
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
 

@@ -107,8 +107,8 @@ class UserCart extends Component {
     render() {
         return (
             <UserLayout>
-                <div className="">
-                    <h1>My Cart</h1>
+                <div className="cart-layout">
+                    <h1 className="cart-layout__title">My Cart</h1>
                     <div className="user_cart">
                         <UserProductBlock
                             products={this.props.user}
@@ -117,8 +117,8 @@ class UserCart extends Component {
                         />
                         {this.state.showTotal ? (
                             <div className="">
-                                <div className="user_cart_sum">
-                                    <div className="">
+                                <div className="user-cart-sum">
+                                    <div>
                                         Total amount: $ {this.state.total}
                                     </div>
                                 </div>

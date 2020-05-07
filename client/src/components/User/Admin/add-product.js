@@ -322,8 +322,8 @@ class AddProduct extends Component {
     render() {
         return (
             <UserLayout>
-                <div className="">
-                    <h1>Add product</h1>
+                <div>
+                    <h1 className="account-add-title">Add product</h1>
 
                     <form onSubmit={(event) => this.submitForm(event)}>
                         <FileUpload
@@ -401,7 +401,10 @@ class AddProduct extends Component {
                             </div>
                         ) : null}
 
-                        <button onClick={(event) => this.submitForm(event)}>
+                        <button
+                            className="link-default link-default--user"
+                            onClick={(event) => this.submitForm(event)}
+                        >
                             Add product
                         </button>
                     </form>

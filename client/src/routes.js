@@ -3,17 +3,17 @@ import { Switch, Route } from 'react-router-dom';
 
 import Layout from './hoc/layout';
 import Home from './components/Home';
-import RegisterLogin from './components/Register_login';
-import Register from './components/Register_login/register';
+import RegisterLogin from './components/RegisterLogin';
+import Register from './components/RegisterLogin/register';
 import UserDashboard from './components/User/index';
 import Auth from './hoc/auth';
 import Shop from './components/Shop';
-import AddProduct from './components/User/Admin/add_product';
-import ManageCategories from './components/User/Admin/manage_categories';
+import AddProduct from './components/User/Admin/add-product';
+import ManageCategories from './components/User/Admin/manage-categories';
 import ProductPage from './components/Product/index';
 import UserCart from './components/User/cart';
-import UpdateProfile from './components/User/update_profile';
-import ManageSite from './components/User/Admin/manage_site';
+import UpdateProfile from './components/User/update-profile';
+import ManageSite from './components/User/Admin/manage-site';
 
 const Routes = () => {
     return (

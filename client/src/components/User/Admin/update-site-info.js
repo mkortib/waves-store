@@ -131,9 +131,9 @@ class UpdateSiteNnfo extends Component {
     }
     render() {
         return (
-            <div className="">
+            <div className="site-info">
                 <form onSubmit={(event) => this.submitForm(event)}>
-                    <h1>Site info</h1>
+                    <h1 className="site-info__title">Site info</h1>
                     <FormField
                         id={'address'}
                         formdata={this.state.formData.address}
@@ -164,7 +164,10 @@ class UpdateSiteNnfo extends Component {
                             </div>
                         ) : null}
 
-                        <button onClick={(event) => this.submitForm(event)}>
+                        <button
+                            className="link-default link-default--user"
+                            onClick={(event) => this.submitForm(event)}
+                        >
                             Update site info
                         </button>
                     </div>

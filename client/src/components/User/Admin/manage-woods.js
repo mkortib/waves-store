@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import {
     update,
     generateData,
@@ -8,9 +9,9 @@ import {
 import FormField from '../../utils/Form/formfield';
 import { connect } from 'react-redux';
 
-import { getBrands, addBrand } from '../../../actions/products_actions';
+import { getWoods, addWood } from '../../../actions/products_actions';
 
-class ManageBrands extends Component {
+class ManageWoods extends Component {
     state = {
         formError: false,
         formSuccess: false,
@@ -21,7 +22,7 @@ class ManageBrands extends Component {
                 config: {
                     name: 'name_input',
                     type: 'text',
-                    placeholder: 'Enter the brand',
+                    placeholder: 'Enter the wood',
                 },
                 validation: {
                     required: true,
@@ -34,13 +35,13 @@ class ManageBrands extends Component {
     };
 
     componentDidMount() {
-        this.props.dispatch(getBrands());
+        this.props.dispatch(getWoods());
     }
 
     showCategoryItems() {
-        return this.props.products.brands
-            ? this.props.products.brands.map((item, i) => (
-                  <div className="category_item" key={item._id}>
+        return this.props.products.woods
+            ? this.props.products.woods.map((item, i) => (
+                  <div className="category-item" key={item._id}>
                       {item.name}
                   </div>
               ))
@@ -48,7 +49,7 @@ class ManageBrands extends Component {
     }
 
     updateForm(element) {
-        const newFormData = update(element, this.state.formData, 'brands');
+        const newFormData = update(element, this.state.formData, 'woods');
 
         this.setState({
             formError: false,
@@ -57,7 +58,7 @@ class ManageBrands extends Component {
     }
 
     resetFieldsHandler() {
-        const newFormData = resetFields(this.state.formData, 'brands');
+        const newFormData = resetFields(this.state.formData, 'woods');
 
         this.setState({
             formData: newFormData,
@@ -68,9 +69,9 @@ class ManageBrands extends Component {
     submitForm(event) {
         event.preventDefault();
 
-        let dataToSubmit = generateData(this.state.formData, 'brands');
-        let formIsValid = isFormValid(this.state.formData, 'brands');
-        let existingBrands = this.props.products.brands;
+        let dataToSubmit = generateData(this.state.formData, 'woods');
+        let formIsValid = isFormValid(this.state.formData, 'woods');
+        let existingWoods = this.props.products.woods;
 
         if (!formIsValid) {
             this.setState({
@@ -81,7 +82,7 @@ class ManageBrands extends Component {
         }
 
         this.props
-            .dispatch(addBrand(dataToSubmit, existingBrands))
+            .dispatch(addWood(dataToSubmit, existingWoods))
             .then((response) => {
                 if (!response.payload.success) {
                     return;
@@ -93,11 +94,11 @@ class ManageBrands extends Component {
 
     render() {
         return (
-            <div className="admin_category_wrapper">
-                <h1>Brands</h1>
-                <div className="admin_two_column">
+            <div className="admin-category-wrapper">
+                <h1 className="admin-category-title">Woods</h1>
+                <div className="admin-two-column">
                     <div className="left">
-                        <div className="brands_container">
+                        <div className="brands-container">
                             {this.showCategoryItems()}
                         </div>
                     </div>
@@ -118,8 +119,11 @@ class ManageBrands extends Component {
                                 </div>
                             ) : null}
 
-                            <button onClick={(event) => this.submitForm(event)}>
-                                Add Brand
+                            <button
+                                className="link-default link-default--user"
+                                onClick={(event) => this.submitForm(event)}
+                            >
+                                Add Wood
                             </button>
                         </form>
                     </div>
@@ -135,4 +139,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps)(ManageBrands);
+export default connect(mapStateToProps)(ManageWoods);

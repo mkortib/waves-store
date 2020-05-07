@@ -101,7 +101,10 @@ class Login extends Component {
                         </div>
                     ) : null}
 
-                    <button onClick={(event) => this.submitForm(event)}>
+                    <button
+                        className="link-default link-default--login"
+                        onClick={(event) => this.submitForm(event)}
+                    >
                         Log in
                     </button>
                 </form>

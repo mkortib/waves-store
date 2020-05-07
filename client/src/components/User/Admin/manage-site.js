@@ -1,5 +1,5 @@
 import React from 'react';
-import UpdateSiteNnfo from './update_site_info';
+import UpdateSiteNnfo from './update-site-info';
 import UserLayout from '../../../hoc/user';
 
 const ManageSite = () => {

@@ -7,12 +7,21 @@ const UserDashboard = ({ user }) => {
     return (
         <UserLayout>
             <div className="">
-                <div className="user_nfo_panel">
-                    <h1>User information</h1>
-                    <div className="">
-                        <span>{user.userData.name}</span>
-                        <span>{user.userData.lastname}</span>
-                        <span>{user.userData.email}</span>
+                <div className="user-nfo-panel">
+                    <h1 className="user-nfo-panel__title">User information</h1>
+                    <div className="user-list">
+                        <div className="user-list__item">
+                            <span>Name:</span>
+                            <span>{user.userData.name}</span>
+                        </div>
+                        <div className="user-list__item">
+                            <span>Last Name:</span>
+                            <span>{user.userData.lastname}</span>
+                        </div>
+                        <div className="user-list__item">
+                            <span>Email:</span>
+                            <span>{user.userData.email}</span>
+                        </div>
                     </div>
                     <MyButton
                         type="default"
@@ -21,9 +30,11 @@ const UserDashboard = ({ user }) => {
                     />
                 </div>
                 {user.userData.history ? (
-                    <div className="user_nfo_panel">
-                        <h1>History purchases</h1>
-                        <div className="user_product_block_wrapper">
+                    <div className="user-nfo-panel">
+                        <h1 className="user-nfo-panel__title">
+                            History purchases
+                        </h1>
+                        <div className="user-product-block user-product-block--history">
                             <HistoryBlock products={user.userData.history} />
                         </div>
                     </div>

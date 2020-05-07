@@ -1,0 +1,141 @@
+@import '../../scss/common/colors';
+@import '../../scss/common/media';
+@import '../../scss/common/transition';
+@import '../../scss/common/z-index';
+
+.register-login-container {
+	display: flex;
+	flex-direction: column;
+	border: .1rem solid color('grey');
+	border-top: .5rem solid color('grey');
+	box-sizing: border-box;
+	margin: 5rem 0 0rem 0;
+	padding: 2rem;
+
+	&__left {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		order: 2;
+		margin-top: 3rem;
+
+		@include media('sm') {
+			order: 1;
+			margin-top: auto;
+		}
+	}
+
+	&__right {
+		flex: 1;
+		order: 1;
+
+		@include media('sm') {
+			order: 2;
+		}
+	}
+
+	.title-1 {
+		font-size: 2.4rem;
+		margin-bottom: 1rem;
+	}
+
+	.title-2 {
+		font-size: 2rem;
+	}
+
+	.description-1 {
+		font-size: 1.4rem;
+		text-align: justify;
+
+		@include media('sm') {
+			max-width: 90%;
+			text-align: left;
+		}
+	}
+
+	.description-2 {
+		font-size: 1.2rem;
+		margin-bottom: 1rem;
+	}
+
+	.my-link {
+		margin-top: 2rem;
+	}
+
+	.link-default {
+		width: 100%;
+		text-align: center;
+
+		&--login {
+			outline: none;
+			border: none;
+			padding: 1rem 3rem;
+			width: 100%;
+			margin-top: 1rem;
+
+			@include media('sm') {
+				width: inherit;
+			}
+		}
+
+		@include media('sm') {
+			width: inherit;
+		}
+	}
+
+	@include media('sm') {
+		flex-direction: row;
+		margin: 12rem 0 0rem 0;
+		padding: 3rem;
+	}
+}
+
+.register-container {
+	margin: 5rem 0 1rem;
+
+	.title {
+		font-size: 2.1rem;
+		margin-bottom: 1rem;
+	}
+
+	.email-field {
+		margin-bottom: 3rem;
+	}
+
+	.link-default--register {
+		outline: none;
+		border: none;
+		margin-top: 1rem;
+		padding: 1rem 3rem;
+		width: 100%;
+
+		@include media('sm') {
+			width: inherit;
+		}
+	}
+
+	@include media('sm') {
+		margin: 10rem 0;
+	}
+}
+
+.form-block-two {
+	display: flex;
+	flex-direction: column;
+	
+	.block {
+		flex: 1;
+		box-sizing: border-box;
+
+		&:nth-child(1) {
+			@include media('sm') {
+				margin-right: 1rem;
+			}
+		}
+	}
+
+	@include media('sm') {
+		flex-direction: row;
+	}
+}

@@ -1,7 +1,7 @@
 import React from 'react';
 import UserLayout from '../../../hoc/user';
-import ManageBrands from './manage_brands';
-import ManageWoods from './manage_woods';
+import ManageBrands from './manage-brands';
+import ManageWoods from './manage-woods';
 
 const ManageCategories = () => {
     return (
