@@ -41,7 +41,7 @@
 	}
 
 	@include media('sm') {
-		padding-top: inherit;
+		padding-top: 0;
 	}
 }
 

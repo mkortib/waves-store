@@ -34,11 +34,11 @@ const MyButton = (props) => {
             case 'add_to_cart_link':
                 template = (
                     <div
-                        className="add_to_cart_link"
+                        className="addtocart-link"
                         onClick={() => props.runAction()}
                     >
-                        Add to cart
                         <FontAwesomeIcon icon={faShoppingBag} />
+                        Add to cart
                     </div>
                 );
                 break;

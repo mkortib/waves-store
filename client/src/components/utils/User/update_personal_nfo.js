@@ -98,8 +98,6 @@ class UpdatePersonalNfo extends Component {
                 });
             }
         });
-
-        console.log(dataToSubmit);
     }
 
     updateForm(element) {

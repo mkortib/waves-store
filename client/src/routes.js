@@ -14,6 +14,7 @@ import ProductPage from './components/Product/index';
 import UserCart from './components/User/cart';
 import UpdateProfile from './components/User/update-profile';
 import ManageSite from './components/User/Admin/manage-site';
+import Brands from './components/Brands';
 
 const Routes = () => {
     return (
@@ -66,6 +67,7 @@ const Routes = () => {
                     exact
                     component={Auth(ManageSite, true)}
                 />
+                <Route path="/brands" exact component={Auth(Brands, null)} />
             </Switch>
         </Layout>
     );
