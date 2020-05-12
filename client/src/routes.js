@@ -15,28 +15,19 @@ import UserCart from './components/User/cart';
 import UpdateProfile from './components/User/update-profile';
 import ManageSite from './components/User/Admin/manage-site';
 import Brands from './components/Brands';
+import PageNotFount from './components/404';
 
 const Routes = () => {
     return (
         <Layout>
             <Switch>
-                <Route path="/" exact component={Auth(Home, null)} />
+                {/* Private */}
+
                 <Route
                     path="/user/dashboard"
                     exact
                     component={Auth(UserDashboard, true)}
                 />
-                <Route
-                    path="/register"
-                    exact
-                    component={Auth(Register, false)}
-                />
-                <Route
-                    path="/register_login"
-                    exact
-                    component={Auth(RegisterLogin, false)}
-                />
-                <Route path="/shop" exact component={Auth(Shop, null)} />
                 <Route
                     path="/admin/add_product"
                     exact
@@ -46,11 +37,6 @@ const Routes = () => {
                     path="/admin/manage_categories"
                     exact
                     component={Auth(ManageCategories, true)}
-                />
-                <Route
-                    path="/product_details/:id"
-                    exact
-                    component={Auth(ProductPage, null)}
                 />
                 <Route
                     path="/user/cart"
@@ -67,7 +53,26 @@ const Routes = () => {
                     exact
                     component={Auth(ManageSite, true)}
                 />
+                {/* Public */}
+                <Route
+                    path="/register"
+                    exact
+                    component={Auth(Register, false)}
+                />
+                <Route
+                    path="/register_login"
+                    exact
+                    component={Auth(RegisterLogin, false)}
+                />
+                <Route path="/shop" exact component={Auth(Shop, null)} />
+                <Route
+                    path="/product_details/:id"
+                    exact
+                    component={Auth(ProductPage, null)}
+                />
                 <Route path="/brands" exact component={Auth(Brands, null)} />
+                <Route path="/" exact component={Auth(Home, null)} />
+                <Route component={Auth(PageNotFount, null)} />
             </Switch>
         </Layout>
     );

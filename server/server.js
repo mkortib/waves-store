@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const formidable = require('express-formidable');
 const cloudinary = require('cloudinary');
+const SHA1 = require('crypto-js/sha1');
 
 const app = express();
 const mongoose = require('mongoose');
@@ -35,6 +36,23 @@ const { Site } = require('./models/site');
 // Middlewares
 const { auth } = require('./middleware/auth');
 const { admin } = require('./middleware/admin');
+
+// utils
+const { sendEmail } = require('./utils/mail/index');
+
+// Fix specific error (nodemailer)
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+
+// purchase process
+
+// const date = new Date();
+// const po = `PO-${date.getSeconds()}${date.getMilliseconds()}-${SHA1(
+//     'dssdds123232dssd'
+// )
+//     .toString()
+//     .substring(0, 8)}`;
+
+// console.log(po);
 
 //==================
 //	   Products
@@ -211,17 +229,19 @@ app.get('/api/users/auth', auth, (req, res) => {
 app.post('/api/users/register', (req, res) => {
     const user = new User(req.body);
 
-    user.save((err, doc) => {
-        if (err) {
+    user.save()
+        .then((doc) => {
+            const successResponse = { success: true };
+
+            sendEmail(doc.email, doc.name, null, 'welcome');
+
+            res.status(200).json(successResponse);
+        })
+        .catch((err) => {
             const errResponse = { success: false, error: err };
 
-            return res.json(errResponse);
-        }
-
-        const successResponse = { success: true };
-
-        return res.status(200).json(successResponse);
-    });
+            res.json(errResponse);
+        });
 });
 
 app.post('/api/users/login', (req, res) => {
@@ -375,9 +395,17 @@ app.post('/api/users/successBuy', auth, (req, res) => {
     let history = [];
     let transactionData = {};
 
+    const date = new Date();
+    const po = `PO-${date.getSeconds()}${date.getMilliseconds()}-${SHA1(
+        req.user._id
+    )
+        .toString()
+        .substring(0, 8)}`;
+
     // user history
     req.body.cartDetail.forEach((item) => {
         history.push({
+            porder: po,
             dateOfPurchase: Date.now(),
             name: item.name,
             brand: item.brand.name,
@@ -395,7 +423,8 @@ app.post('/api/users/successBuy', auth, (req, res) => {
         lastname: req.user.lastname,
         email: req.user.email,
     };
-    transactionData.data = req.body.paymentData;
+
+    transactionData.data = { ...req.body.paymentData, porder: po };
     transactionData.product = history;
 
     User.findOneAndUpdate(
@@ -405,6 +434,7 @@ app.post('/api/users/successBuy', auth, (req, res) => {
     )
         .then((user) => {
             const payment = new Payment(transactionData);
+
             payment
                 .save()
                 .then((payment) => {
@@ -434,6 +464,14 @@ app.post('/api/users/successBuy', auth, (req, res) => {
                                 cart: user.cart,
                                 cartDetail: [],
                             };
+
+                            sendEmail(
+                                user.email,
+                                user.name,
+                                null,
+                                'order-details',
+                                transactionData
+                            );
 
                             res.status(200).json(successMessage);
                         }
