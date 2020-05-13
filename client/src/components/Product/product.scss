@@ -173,14 +173,17 @@
 	justify-content: space-between;
 
 	&__main {
-		width: 80%;
+		width: 70%;
+		display: flex;
+		justify-content: center;
 	}
 
 	&__thumbs {
-		width: 15%;
+		width: 25%;
 
 		.thumb {
-			width: 100%;
+			width: 70%;
+			margin: auto;
 			padding: 0 .5rem;
 			height: 11rem;
 			display: flex;

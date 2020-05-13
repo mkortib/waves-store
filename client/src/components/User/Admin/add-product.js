@@ -20,8 +20,93 @@ import {
 
 import FileUpload from '../../utils/fileupload';
 
+// Material UI Imports
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import ErrorIcon from '@material-ui/icons/Error';
+import CloseIcon from '@material-ui/icons/Close';
+import green from '@material-ui/core/colors/green';
+import IconButton from '@material-ui/core/IconButton';
+import Snackbar from '@material-ui/core/Snackbar';
+import SnackbarContent from '@material-ui/core/SnackbarContent';
+import { withStyles } from '@material-ui/core/styles';
+
+const variantIcon = {
+    success: CheckCircleIcon,
+    error: ErrorIcon,
+};
+
+const styles1 = (theme) => ({
+    success: {
+        backgroundColor: green[600],
+    },
+    error: {
+        backgroundColor: theme.palette.error.dark,
+    },
+    icon: {
+        fontSize: 20,
+    },
+    iconVariant: {
+        opacity: 0.9,
+        marginRight: theme.spacing.unit,
+    },
+    message: {
+        display: 'flex',
+        alignItems: 'center',
+    },
+});
+
+function MySnackbarContent(props) {
+    const { classes, className, message, onClose, variant, ...other } = props;
+    const Icon = variantIcon[variant];
+
+    return (
+        <SnackbarContent
+            className={classNames(classes[variant], className)}
+            aria-describedby="client-snackbar"
+            message={
+                <span id="client-snackbar" className={classes.message}>
+                    <Icon
+                        className={classNames(
+                            classes.icon,
+                            classes.iconVariant
+                        )}
+                    />
+                    <span style={{ fontSize: '15px' }}>{message}</span>
+                </span>
+            }
+            action={[
+                <IconButton
+                    key="close"
+                    aria-label="Close"
+                    color="inherit"
+                    className={classes.close}
+                    onClick={onClose}
+                >
+                    <CloseIcon className={classes.icon} />
+                </IconButton>,
+            ]}
+            {...other}
+        />
+    );
+}
+
+MySnackbarContent.propTypes = {
+    classes: PropTypes.object.isRequired,
+    className: PropTypes.string,
+    message: PropTypes.node,
+    onClose: PropTypes.func,
+    variant: PropTypes.oneOf(['success', 'error']).isRequired,
+};
+
+const MySnackbarContentWrapper = withStyles(styles1)(MySnackbarContent);
+
 class AddProduct extends Component {
     state = {
+        open: false,
+        variant: '',
+        snackMessage: '',
         formError: false,
         formSuccess: false,
         formData: {
@@ -229,6 +314,38 @@ class AddProduct extends Component {
         },
     };
 
+    // Snack logic
+
+    renderSnack = () => (
+        <Snackbar
+            anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'right',
+            }}
+            open={this.state.open}
+            autoHideDuration={6000}
+            onClose={this.handleClose}
+        >
+            <MySnackbarContentWrapper
+                onClose={this.handleClose}
+                variant={this.state.variant}
+                message={this.state.snackMessage}
+            />
+        </Snackbar>
+    );
+
+    handleClick = () => {
+        this.setState({ open: true });
+    };
+
+    handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        this.setState({ open: false });
+    };
+
     componentDidMount() {
         const formData = this.state.formData;
 
@@ -282,18 +399,34 @@ class AddProduct extends Component {
         let formIsValid = isFormValid(this.state.formData, 'products');
 
         if (!formIsValid) {
+            this.handleClick();
+
             this.setState({
                 formError: true,
+                variant: 'error',
+                snackMessage: 'Please check your data!',
             });
 
             return;
         }
 
         this.props.dispatch(addProduct(dataToSubmit)).then(() => {
+            this.handleClick();
+
             if (!this.props.products.addProduct.success) {
-                this.setState({ formError: true });
+                this.setState({
+                    formError: true,
+                    variant: 'error',
+                    snackMessage: 'Please check your data!',
+                });
+
                 return;
             }
+
+            this.setState({
+                variant: 'success',
+                snackMessage: 'Guitar was add to cart',
+            });
 
             this.resetFieldsHandler();
         });
@@ -391,10 +524,6 @@ class AddProduct extends Component {
                             change={(element) => this.updateForm(element)}
                         />
 
-                        {this.state.formSuccess ? (
-                            <div className="form_success">Success</div>
-                        ) : null}
-
                         {this.state.formError ? (
                             <div className="error_label">
                                 Please check your data
@@ -408,6 +537,8 @@ class AddProduct extends Component {
                             Add product
                         </button>
                     </form>
+                    {/* Snack */}
+                    {this.renderSnack()}
                 </div>
             </UserLayout>
         );

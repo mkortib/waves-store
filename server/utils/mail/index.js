@@ -3,6 +3,7 @@ require('dotenv').config();
 
 const { welcome } = require('./welcome-template');
 const { orderDetails } = require('./odrer-details');
+const { resetPass } = require('./reset-password');
 
 const sendEmail = (to, name, token, type, actionData) => {
     const smtpTransport = mailer.createTransport({
@@ -13,7 +14,7 @@ const sendEmail = (to, name, token, type, actionData) => {
         },
     });
 
-    const getEmailData = (to, name, token, template, purchseData) => {
+    const getEmailData = (to, name, token, template, addData) => {
         let data = null;
 
         switch (template) {
@@ -30,7 +31,15 @@ const sendEmail = (to, name, token, type, actionData) => {
                     from: 'Waves <maxstudy20@gmail.com>',
                     to,
                     subject: `Thanks for shopping with us ${name}`,
-                    html: orderDetails(purchseData),
+                    html: orderDetails(addData),
+                };
+                break;
+            case 'reset-password':
+                data = {
+                    from: 'Waves <maxstudy20@gmail.com>',
+                    to,
+                    subject: `Hey ${name}, reset your password`,
+                    html: resetPass(addData),
                 };
                 break;
             default:

@@ -16,9 +16,10 @@
 	&__image {
 		width: 27.8rem;
 		height: 27.8rem;
-		background-size: cover;
 		max-width: 100%;
 		background-position: center;
+		background-size: contain;
+		background-repeat: no-repeat;
 
 		.cards-block & {
 			width: 100%;

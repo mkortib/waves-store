@@ -16,6 +16,8 @@ import UpdateProfile from './components/User/update-profile';
 import ManageSite from './components/User/Admin/manage-site';
 import Brands from './components/Brands';
 import PageNotFount from './components/404';
+import ResetUser from './components/ResetPassword';
+import ResetPass from './components/ResetPassword/reset-pass';
 
 const Routes = () => {
     return (
@@ -58,6 +60,16 @@ const Routes = () => {
                     path="/register"
                     exact
                     component={Auth(Register, false)}
+                />
+                <Route
+                    path="/reset_user"
+                    exact
+                    component={Auth(ResetUser, false)}
+                />
+                <Route
+                    path="/reset_password/:token"
+                    exact
+                    component={Auth(ResetPass, false)}
                 />
                 <Route
                     path="/register_login"

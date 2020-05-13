@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const formidable = require('express-formidable');
 const cloudinary = require('cloudinary');
+const moment = require('moment');
 const SHA1 = require('crypto-js/sha1');
 
 const app = express();
@@ -208,6 +209,50 @@ app.get('/api/product/brands', (req, res) => {
 //==================
 //	    USERS
 //==================
+
+app.post('/api/user/reset_user', (req, res) => {
+    User.findOne({ email: req.body.email })
+        .then((user) => {
+            user.generateResetToken((err, userBack) => {
+                if (err) {
+                    const errMessage = { success: false, err };
+
+                    res.json(errMessage);
+
+                    return;
+                }
+
+                sendEmail(user.email, user.name, null, 'reset-password', user);
+
+                res.json({ success: true });
+            });
+        })
+        .catch((error) => console.log(error));
+});
+
+app.post('/api/user/reset_password', (req, res) => {
+    let today = moment().startOf('day').valueOf();
+
+    User.findOne({
+        resetToken: req.body.resetToken,
+        resetTokenExp: { $gte: today },
+    })
+        .then((user) => {
+            user.password = req.body.password;
+            user.resetToken = '';
+            user.resetTokenExp = '';
+
+            user.save()
+                .then((doc) => res.status(200).json({ success: true }))
+                .catch((err) => res.json({ success: false, err }));
+        })
+        .catch((error) => {
+            const errMessage = {
+                success: false,
+                message: 'Sorry, token bad, generate a new one',
+            };
+        });
+});
 
 app.get('/api/users/auth', auth, (req, res) => {
     const { email, name, lastname, role, cart, history } = req.user;

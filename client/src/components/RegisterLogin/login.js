@@ -107,6 +107,13 @@ class Login extends Component {
                     >
                         Log in
                     </button>
+                    <button
+                        style={{ marginLeft: '20px' }}
+                        className="link-default link-default--login"
+                        onClick={() => this.props.history.push('/reset_user')}
+                    >
+                        Forgot my Password
+                    </button>
                 </form>
             </div>
         );
