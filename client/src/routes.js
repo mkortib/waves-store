@@ -18,6 +18,7 @@ import Brands from './components/Brands';
 import PageNotFount from './components/404';
 import ResetUser from './components/ResetPassword';
 import ResetPass from './components/ResetPassword/reset-pass';
+import AboutUs from './components/AboutUs';
 
 const Routes = () => {
     return (
@@ -83,6 +84,7 @@ const Routes = () => {
                     component={Auth(ProductPage, null)}
                 />
                 <Route path="/brands" exact component={Auth(Brands, null)} />
+                <Route path="/about_us" exact component={Auth(AboutUs, null)} />
                 <Route path="/" exact component={Auth(Home, null)} />
                 <Route component={Auth(PageNotFount, null)} />
             </Switch>

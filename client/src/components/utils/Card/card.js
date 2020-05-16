@@ -158,7 +158,12 @@ class Card extends Component {
                     </div>
                     {props.grid ? (
                         <div className="card-item__description">
-                            <p>{props.description}</p>
+                            <p>
+                                {props.description.length > 250
+                                    ? props.description.substring(0, 250) +
+                                      ' ...'
+                                    : props.description}
+                            </p>
                         </div>
                     ) : null}
                     <div className="actions"></div>

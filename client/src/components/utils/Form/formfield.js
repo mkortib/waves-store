@@ -53,6 +53,7 @@ const FormField = ({ formdata, change, id }) => {
                             onBlur={(event) =>
                                 change({ event, id, blur: true })
                             }
+                            rows="50"
                             onChange={(event) => change({ event, id })}
                         />
                         {showError()}

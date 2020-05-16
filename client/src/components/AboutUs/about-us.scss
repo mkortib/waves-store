@@ -1,0 +1,153 @@
+@import '../../scss/common/colors';
+@import '../../scss/common/media';
+@import '../../scss/common/transition';
+@import '../../scss/common/z-index';
+
+.about-us-info {
+	&__title {
+		font-weight: 700;
+		font-size: 3.5rem;
+		letter-spacing: -.2rem;
+		color: color('grey');
+	}
+
+	&__txt {
+		font-size: 1.6rem;
+		margin-top: 2rem;
+	}
+}
+
+.about-us-block {
+	position: relative;
+	display: flex;
+	overflow: hidden;
+
+	&__left, 
+	&__right {
+		width: 50%;
+		background-size: cover;
+		background-position: center;
+		min-height: 70rem;
+		position: relative;
+		z-index: 1;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		cursor: pointer;
+		transition: all transition('slow');
+		overflow: hidden;
+
+		&::after {
+			content: '';
+			width: 100%;
+			height: 100%;
+			background-color: rgba(#000, .5);
+			left: 0;
+			bottom: 0;
+			right: 0;
+			top: 0;
+			position: absolute;
+		}
+	}
+
+	&__right {
+		padding: 4rem;
+		background-image: url('/images/X700dualityglamresized4.jpg');
+		justify-content: flex-end;
+	}
+
+	&__left {
+		padding: 4rem;
+		justify-content: flex-end;
+		background-image: url('/images/about-us-1.jpg');
+	}
+
+	&__title {
+		color: color('yellow');
+		font-size: 6.3rem;
+		letter-spacing: -.5rem;
+		margin-bottom: 1rem;
+		z-index: 1;
+		position: relative;
+		transform: translateY(8rem);
+		transition: all transition('slow');
+
+		.about-us-block__left & {
+			color: color('white');
+		}
+
+		.about-us-block__left:hover & {
+			transform: translateY(0);
+		}
+
+		.about-us-block__right:hover & {
+			transform: translateY(0);
+		}
+	}
+
+	&__txt {
+		color: color('white');
+		font-size: 1.5rem;
+		z-index: 1;
+		position: relative;
+		opacity: 0;
+		transform: translateY(-10rem);
+		transition: all transition('slow');
+
+		.about-us-block__left:hover &, 
+		.about-us-block__right:hover & {
+			transform: translateY(0);
+			opacity: 1;
+		}
+	}
+}
+
+.about-us-care {
+	display: flex;
+	width: 100%;
+	position: relative;
+	margin-bottom: -4rem;
+
+	&__img {
+		min-height: 50rem;
+		width: 33.333%;
+		background-image: url('/images/mosaic-3.jpg');
+		background-size: cover;
+		background-position: center;
+		color: color('white');
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 4.2rem;
+		font-weight: 700;
+		position: relative;
+		letter-spacing: -.2rem;
+		overflow: hidden;
+		transition: all transition('slow');
+		cursor: pointer;
+
+		&::after {
+			content: '';
+			width: 100%;
+			height: 100%;
+			background-color: rgba(#000, .1);
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			top: 0;
+		}
+
+		&:hover {
+			font-size: 6rem;
+		}
+
+		&:nth-of-type(1) {
+			background-image: url('/images/mosaic-1.jpg');
+		}
+
+		&:nth-of-type(2) {
+			background-image: url('/images/mosaic-2.jpg');
+		}
+	}
+}
