@@ -46,6 +46,12 @@ class Header extends Component {
                 public: true,
                 className: 'header-link',
             },
+            {
+                name: 'FAQ',
+                linkTo: '/faq',
+                public: true,
+                className: 'header-link',
+            },
         ],
         user: [
             {

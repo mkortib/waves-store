@@ -31,11 +31,6 @@ class AboutUs extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="about-us-care">
-                    <div className="about-us-care__img"></div>
-                    <div className="about-us-care__img">Yes we care</div>
-                    <div className="about-us-care__img"></div>
-                </div>
             </div>
         );
     }
