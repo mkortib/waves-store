@@ -44,17 +44,6 @@ const { sendEmail } = require('./utils/mail/index');
 // Fix specific error (nodemailer)
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
-// purchase process
-
-// const date = new Date();
-// const po = `PO-${date.getSeconds()}${date.getMilliseconds()}-${SHA1(
-//     'dssdds123232dssd'
-// )
-//     .toString()
-//     .substring(0, 8)}`;
-
-// console.log(po);
-
 //==================
 //	   Products
 //==================

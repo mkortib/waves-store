@@ -20,6 +20,7 @@ import ResetUser from './components/ResetPassword';
 import ResetPass from './components/ResetPassword/reset-pass';
 import AboutUs from './components/AboutUs';
 import Faq from './components/FAQ/index';
+import FindUs from './components/FindUs';
 
 const Routes = () => {
     return (
@@ -87,6 +88,7 @@ const Routes = () => {
                 <Route path="/brands" exact component={Auth(Brands, null)} />
                 <Route path="/about_us" exact component={Auth(AboutUs, null)} />
                 <Route path="/faq" exact component={Auth(Faq, null)} />
+                <Route path="/find_us" exact component={Auth(FindUs, null)} />
                 <Route path="/" exact component={Auth(Home, null)} />
                 <Route component={Auth(PageNotFount, null)} />
             </Switch>

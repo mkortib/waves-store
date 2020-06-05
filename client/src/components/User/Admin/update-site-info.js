@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
+import FormField from '../../utils/Form/formfield';
+import { connect } from 'react-redux';
+import { getSiteData, updateSiteData } from '../../../actions/site_actions';
+import Snackbar from '@material-ui/core/Snackbar';
+import MySnackbarContentWrapper from '../../utils/snackbar';
 import {
     update,
     generateData,
     isFormValid,
     populateFields,
 } from '../../utils/Form/formActions';
-import FormField from '../../utils/Form/formfield';
-
-import { connect } from 'react-redux';
-import { getSiteData, updateSiteData } from '../../../actions/site_actions';
 
 class UpdateSiteNnfo extends Component {
     state = {
@@ -85,7 +86,40 @@ class UpdateSiteNnfo extends Component {
                 showLabel: true,
             },
         },
+        open: false,
+        variant: '',
+        snackMessage: '',
     };
+
+    handleClick = () => {
+        this.setState({ open: true });
+    };
+
+    handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        this.setState({ open: false });
+    };
+
+    renderSnack = () => (
+        <Snackbar
+            anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'right',
+            }}
+            open={this.state.open}
+            autoHideDuration={6000}
+            onClose={this.handleClose}
+        >
+            <MySnackbarContentWrapper
+                onClose={this.handleClose}
+                variant={this.state.variant}
+                message={this.state.snackMessage}
+            />
+        </Snackbar>
+    );
 
     componentDidMount() {
         this.props.dispatch(getSiteData()).then(() => {
@@ -107,17 +141,28 @@ class UpdateSiteNnfo extends Component {
         if (!formIsValid) {
             this.setState({
                 formError: true,
+                variant: 'error',
+                open: true,
+                snackMessage: 'Please check your form data!',
             });
 
             return;
         }
 
         this.props.dispatch(updateSiteData(dataToSubmit)).then(() => {
-            this.setState({ formSuccess: true }, () => {
-                setTimeout(() => {
-                    this.setState({ formSuccess: false });
-                }, 2000);
-            });
+            this.setState(
+                {
+                    formSuccess: true,
+                    variant: 'success',
+                    open: true,
+                    snackMessage: 'Site info was update',
+                },
+                () => {
+                    setTimeout(() => {
+                        this.setState({ formSuccess: false });
+                    }, 2000);
+                }
+            );
         });
     }
 
@@ -129,6 +174,7 @@ class UpdateSiteNnfo extends Component {
             formData: newFormData,
         });
     }
+
     render() {
         return (
             <div className="site-info">
@@ -154,16 +200,7 @@ class UpdateSiteNnfo extends Component {
                         formdata={this.state.formData.email}
                         change={(element) => this.updateForm(element)}
                     />
-                    <div className="">
-                        {this.state.formSuccess ? (
-                            <div className="form_success">Success</div>
-                        ) : null}
-                        {this.state.formError ? (
-                            <div className="error_label">
-                                Please check your data
-                            </div>
-                        ) : null}
-
+                    <div>
                         <button
                             className="link-default link-default--user"
                             onClick={(event) => this.submitForm(event)}
@@ -171,6 +208,8 @@ class UpdateSiteNnfo extends Component {
                             Update site info
                         </button>
                     </div>
+                    {/* Snack */}
+                    {this.renderSnack()}
                 </form>
             </div>
         );

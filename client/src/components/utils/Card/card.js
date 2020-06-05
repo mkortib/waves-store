@@ -173,13 +173,15 @@ class Card extends Component {
                         type="bag_link"
                         runAction={() => {
                             const { isAuth } = props.user.userData;
+                            const { name } = props;
+
                             this.handleClick();
 
                             if (isAuth) {
                                 this.props.dispatch(addToCart(props._id));
                                 this.setState({
                                     variant: 'success',
-                                    snackMessage: 'Guitar was add to cart',
+                                    snackMessage: `Guitar ${name} was add to cart`,
                                 });
                                 return;
                             }

@@ -82,6 +82,7 @@
 
 	&__btn {
 		margin-left: 1.5rem;
+		cursor: pointer;
 
 		&.active {
 			color: color('yellow');

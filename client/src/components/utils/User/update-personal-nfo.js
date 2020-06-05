@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import FormField from '../../utils/Form/formfield';
+import FormField from '../Form/formfield';
+import { updateUserData, clearUpdateUser } from '../../../actions/user_actions';
+import { connect } from 'react-redux';
+import Snackbar from '@material-ui/core/Snackbar';
+import MySnackbarContentWrapper from '../../utils/snackbar';
 import {
     update,
     generateData,
     populateFields,
     isFormValid,
-} from '../../utils/Form/formActions';
-
-import { updateUserData, clearUpdateUser } from '../../../actions/user_actions';
-
-import { connect } from 'react-redux';
+} from '../Form/formActions';
 
 class UpdatePersonalNfo extends Component {
     state = {
@@ -63,7 +63,40 @@ class UpdatePersonalNfo extends Component {
                 validationMessage: '',
             },
         },
+        open: false,
+        variant: '',
+        snackMessage: '',
     };
+
+    handleClick = () => {
+        this.setState({ open: true });
+    };
+
+    handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        this.setState({ open: false });
+    };
+
+    renderSnack = () => (
+        <Snackbar
+            anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'right',
+            }}
+            open={this.state.open}
+            autoHideDuration={6000}
+            onClose={this.handleClose}
+        >
+            <MySnackbarContentWrapper
+                onClose={this.handleClose}
+                variant={this.state.variant}
+                message={this.state.snackMessage}
+            />
+        </Snackbar>
+    );
 
     componentWillMount() {
         const newFormData = populateFields(
@@ -81,21 +114,36 @@ class UpdatePersonalNfo extends Component {
         let formIsValid = isFormValid(this.state.formData, 'update_user');
 
         if (!formIsValid) {
+            this.handleClick();
+
             this.setState({
                 formError: true,
+                snackMessage: 'Please check your form data!',
+                variant: 'error',
             });
 
             return;
         }
 
         this.props.dispatch(updateUserData(dataToSubmit)).then(() => {
-            if (this.props.user.userData.success) {
-                this.setState({ formSuccess: true }, () => {
-                    setTimeout(() => {
-                        this.props.dispatch(clearUpdateUser());
-                        this.setState({ formSuccess: false });
-                    }, 3000);
-                });
+            if (this.props.user.updateUser.success) {
+                console.log('Yess');
+                this.setState(
+                    {
+                        formSuccess: true,
+                        snackMessage: 'Information was update',
+                        variant: 'success',
+                    },
+                    () => {
+                        this.handleClick();
+                        setTimeout(() => {
+                            this.props.dispatch(clearUpdateUser());
+                            this.setState({
+                                formSuccess: false,
+                            });
+                        }, 3000);
+                    }
+                );
             }
         });
     }
@@ -129,23 +177,14 @@ class UpdatePersonalNfo extends Component {
                         />
                     </div>
                 </div>
-                <div className="">
+                <div>
                     <FormField
                         id={'email'}
                         formdata={this.state.formData.email}
                         change={(element) => this.updateForm(element)}
                     />
                 </div>
-                <div className="">
-                    {this.state.formSuccess ? (
-                        <div className="form_success">Success</div>
-                    ) : null}
-                    {this.state.formError ? (
-                        <div className="error_label">
-                            Please check your data
-                        </div>
-                    ) : null}
-
+                <div>
                     <button
                         className="link-default link-default--user"
                         onClick={(event) => this.submitForm(event)}
@@ -153,6 +192,8 @@ class UpdatePersonalNfo extends Component {
                         Update Personal info
                     </button>
                 </div>
+                {/* Snack */}
+                {this.renderSnack()}
             </form>
         );
     }

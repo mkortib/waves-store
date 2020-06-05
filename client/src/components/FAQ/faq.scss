@@ -7,7 +7,7 @@
 	&-bg {
 		background-image: url('/images/faq-header.jpg');
 		background-size: cover;
-		min-height: 60rem;
+		min-height: 40rem;
 		width: 100%;
 		display: flex;
 		align-items: center;
@@ -29,25 +29,37 @@
 			right: 0;
 			position: absolute;
 		}
+
+		@include media('sm') {
+			min-height: 60rem;
+		}
 	}
 
 	&-tabs {
 		margin: 5rem 0;
 
 		&__title {
-			font-size: 2rem;
+			font-size: 1.4rem;
 			padding: .5rem 0;
 			font-weight: 600;
+
+			@include media('sm') {
+				font-size: 2rem;
+			}
 		}
 
 		&__descr {
-			font-size: 1.4rem;
+			font-size: 1.2rem;
+
+			@include media('sm') {
+				font-size: 1.4rem;
+			}
 		}
 	}
 	
 	&-touch {
 		text-align: center;
-		font-size: 4rem;
+		font-size: 2.2rem;
 		font-weight: 700;
 		margin-bottom: 4rem;
 
@@ -59,27 +71,39 @@
 			border-left: .4rem solid transparent;
 			border-top: .4rem solid transparent;
 			transition: all transition('normal');
-			padding: .5rem 1rem;
+			padding: .1rem .2rem;
 			position: relative;
+			border-width: .2rem;
 
 			.faq-touch:hover & {
 				border-color: color('red-2');
 				background-color: color('red-2');
 				color: color('white')
 			}
+
+			@include media('sm') {
+				margin-left: 1rem;
+				padding: .5rem 1rem;
+				border-width: .4rem;
+			}
+		}
+
+		@include media('sm') {
+			font-size: 4rem;
 		}
 	}
 }
 
 .about-us-care {
 	display: flex;
+	flex-wrap: wrap;
 	width: 100%;
 	position: relative;
 	margin-bottom: -4rem;
 
 	&__img {
 		min-height: 50rem;
-		width: 33.333%;
+		width: 100%;
 		background-image: url('/images/mosaic-3.jpg');
 		background-size: cover;
 		background-position: center;
@@ -117,6 +141,10 @@
 
 		&:nth-of-type(2) {
 			background-image: url('/images/mosaic-2.jpg');
+		}
+
+		@include media('sm') {
+			width: 33.333%;
 		}
 	}
 }

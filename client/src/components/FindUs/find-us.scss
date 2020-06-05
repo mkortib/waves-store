@@ -1,0 +1,136 @@
+@import '../../scss/common/colors';
+@import '../../scss/common/media';
+@import '../../scss/common/transition';
+@import '../../scss/common/z-index';
+
+
+.find-us {
+	&-bg {
+		background-image: url('/images/find-us.jpg');
+		background-size: cover;
+		min-height: 40rem;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: color('white');
+		font-size: 8rem;
+		font-weight: 700;
+		position: relative;
+
+		&::before {
+			content: 'Find Us';
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(color('black'), .5);
+			top: 0;
+			right: 0;
+			position: absolute;
+		}
+
+		@include media('sm') {
+			min-height: 60rem;
+		}
+	}
+
+	&-main {
+		display: flex;
+		flex-wrap: wrap;
+		margin-bottom: -4rem;
+
+		> div {
+			width: 100%;
+
+			&:first-child {
+				order: 2;
+
+				@include media('sm') {
+					order: 1;
+				}
+			}
+
+			&:last-child {
+				order: 1;
+
+				@include media('sm') {
+					order: 2;
+				}
+			}
+
+			@include media('sm') {
+				width: 50%;
+			}
+		}
+	}
+}
+
+.find-us-main {
+
+	&__info {
+		background-image: url('/images/guitars-find.jpg');
+		min-height: 35rem;
+		background-size: cover;
+		background-position: center;
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: transform transition('normal');
+		padding: 0 2rem;
+
+		&::after {
+			width: 100%;
+			height: 100%;
+			content: '';
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			position: absolute;
+			background-color: rgba(#000, .5);
+		}
+
+		@include media('sm') {
+			padding: 0;
+			min-height: 60rem;
+		}
+	}
+
+	&__map {
+		background-image: url('/images/map.png');
+		background-size: cover;
+		background-position: center;
+		height: 100%;
+		transition: transform transition('normal');	
+		min-height: 35rem;
+
+		@include media('sm') {
+			min-height: 60rem;
+		}
+	}
+}
+
+.info-block {
+	color: color('white');
+	position: relative;
+	z-index: 1;
+	font-size: 1.8rem;
+
+	.label {
+		color: color('yellow');
+		font-weight: bold;
+		text-transform: uppercase;
+	}
+
+	> div {
+		margin-bottom: 1rem;
+	}
+
+	
+	@include media('sm') {
+		font-size: 2.2rem;
+	}
+}

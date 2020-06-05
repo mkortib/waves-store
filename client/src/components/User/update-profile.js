@@ -1,6 +1,6 @@
 import React from 'react';
 import UserLayout from '../../hoc/user';
-import UpdatePersonalNfo from '../utils/User/update_personal_nfo';
+import UpdatePersonalNfo from '../utils/User/update-personal-nfo';
 
 const UpdateProfile = () => {
     return (
