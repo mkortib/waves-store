@@ -1,9 +1,7 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 import './faq.scss';
@@ -14,6 +12,61 @@ const Faq = () => {
             <div className="faq-bg"></div>
             <div className="cm-container">
                 <div className="faq-tabs">
+                    <ExpansionPanel>
+                        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                            <h3 className="faq-tabs__title">
+                                Can I use a heavier string gauge other than the
+                                Phosphor Bronze Lights you ship the guitars
+                                with?
+                            </h3>
+                        </ExpansionPanelSummary>
+                        <ExpansionPanelDetails>
+                            <div className="faq-tabs__descr">
+                                YES. You can go up or down one gauge, usually
+                                without needing to readjust your truss rod,
+                                however if you use a much heavier or lighter
+                                gauge this will put different amounts of tension
+                                on the neck so an adjustment may be needed. When
+                                changing string gauge allow some time for the
+                                guitar to settle and then if needed have the
+                                truss rod adjusted by a qualified technician.
+                            </div>
+                        </ExpansionPanelDetails>
+                    </ExpansionPanel>
+                    <ExpansionPanel>
+                        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                            <h3 className="faq-tabs__title">
+                                Can I use Steel strings on my Nylon string
+                                guitar?
+                            </h3>
+                        </ExpansionPanelSummary>
+                        <ExpansionPanelDetails>
+                            <div className="faq-tabs__descr">
+                                NO. Putting Steel strings on a Nylon string
+                                guitar can add extra stress to the guitar top
+                                and may cause the bridge to lift. These guitars
+                                are braced differently and steel and nylon
+                                strings are not interchangeable.
+                            </div>
+                        </ExpansionPanelDetails>
+                    </ExpansionPanel>
+                    <ExpansionPanel>
+                        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                            <h3 className="faq-tabs__title">
+                                What is the difference between Cedar and Spruce?
+                            </h3>
+                        </ExpansionPanelSummary>
+                        <ExpansionPanelDetails>
+                            <div className="faq-tabs__descr">
+                                Cedar tends to produce a warmer sound and ages
+                                faster than spruce. Spruce is brighter and ages
+                                more over a longer period of time. Visually,
+                                cedar is darker in color with a fairly tight
+                                grain pattern. Spruce tends to be very blond
+                                with a slightly wider grain pattern.
+                            </div>
+                        </ExpansionPanelDetails>
+                    </ExpansionPanel>
                     <ExpansionPanel>
                         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                             <h3 className="faq-tabs__title">

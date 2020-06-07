@@ -125,6 +125,10 @@
 	table {
 		width: 50rem;
 		overflow-x: scroll;
+
+		@include media('sm') {
+			width: 100%;
+		}
 	}
 }
 

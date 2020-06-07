@@ -102,7 +102,10 @@ class ResetPass extends Component {
     render() {
         return (
             <div className="cm-container">
-                <form onSubmit={(event) => this.submitForm(event)}>
+                <form
+                    onSubmit={(event) => this.submitForm(event)}
+                    style={{ marginTop: '40px' }}
+                >
                     <h2>Reset password</h2>
                     <div className="form-block-two">
                         <div className="block">
@@ -138,7 +141,15 @@ class ResetPass extends Component {
                 </form>
                 <Dialog open={this.state.formSuccess}>
                     <div className="dialog_alert">
-                        <div className="">Allright!!</div>
+                        <div
+                            style={{
+                                color: '#ffd32c',
+                                textAlign: 'center',
+                                marginBottom: '10px',
+                            }}
+                        >
+                            Allright!!
+                        </div>
                         <div className="">
                             Your password was reseted... Go to login page
                         </div>

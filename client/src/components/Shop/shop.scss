@@ -141,6 +141,7 @@
 		&.grid--bars {
 			width: 100%;
 			display: flex;
+			flex-wrap: wrap;
 
 			.card-item__image {
 				align-self: center;
@@ -149,10 +150,14 @@
 			.card-item__actions {
 				width: 100%;
 				text-align: left;
-				padding: 4rem 2rem 4rem 4rem;
+				padding: 2rem 1rem 1rem 1rem;
 				display: flex;
 				flex-direction: column;
 				justify-content: space-between;
+
+				@include media('sm') {
+					padding: 4rem 2rem 4rem 4rem;
+				}
 			}
 
 			.card-item__tags {
@@ -197,6 +202,10 @@
 
 			&:not(:last-child) {
 				margin-bottom: 2rem;
+			}
+
+			@include media('sm') {
+				flex-wrap: nowrap;
 			}
 		}
 

@@ -2,27 +2,28 @@ import React from 'react';
 import Slider from 'react-slick';
 import MyButton from '../utils/button';
 
-const HomeSlider = (props) => {
+const HomeSlider = () => {
     const slides = [
         {
             img: '/images/featured/home-slide-1.jpg',
             lineOne: 'Limited Edition',
-            lineTwo: 'Start Playing Guitar Today',
+            lineTwo: 'The Height of Performance and Tone',
             linkTitle: 'Shop now',
             linkTo: '/shop',
         },
         {
             img: '/images/featured/home-slide-2.jpg',
-            lineOne: 'B-Stock',
+            lineOne: 'Achieve your Zenith',
             lineTwo: 'Awesome descounts',
             linkTitle: 'View offers',
             linkTo: '/shop',
         },
         {
             img: '/images/featured/home-slide-3.jpg',
-            lineOne: 'B-Stock',
-            lineTwo: 'Awesome descounts',
-            linkTitle: 'View offers',
+            lineOne: 'AZ series',
+            lineTwo:
+                'Unparalleled Sound, Maximum Playability and Exquisite Beauty',
+            linkTitle: 'Explore',
             linkTo: '/shop',
         },
     ];

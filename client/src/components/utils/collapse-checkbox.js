@@ -87,6 +87,7 @@ class CollapseCheckbox extends Component {
                             padding: '1.5rem 2.5rem 1rem 0',
                             marginBottom: '1rem',
                             borderBottom: '1px solid #eaeaea',
+                            cursor: 'pointer',
                         }}
                     >
                         <ListItemText

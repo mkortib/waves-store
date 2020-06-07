@@ -218,8 +218,16 @@ class Register extends Component {
 
                 <Dialog open={this.state.formSuccess}>
                     <div className="dialog_alert">
-                        <div className="">Congratulations!!</div>
-                        <div className="">
+                        <div
+                            style={{
+                                color: '#ffd32c',
+                                marginBottom: '1rem',
+                                textAlign: 'center',
+                            }}
+                        >
+                            Congratulations!!
+                        </div>
+                        <div style={{ fontSize: '2.2rem' }}>
                             You will redirected to the LOGIN a couple seconds...
                         </div>
                     </div>

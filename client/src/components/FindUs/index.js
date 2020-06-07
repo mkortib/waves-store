@@ -1,9 +1,19 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { getSiteData } from '../../actions/site_actions';
 
 import './find-us.scss';
 
 class FindUs extends Component {
+    componentDidMount() {
+        if (Object.keys(this.props.site).length === 0) {
+            this.props.dispatch(getSiteData());
+        }
+    }
+
     render() {
+        const { siteData } = this.props.site;
+
         return (
             <div className="find-us">
                 <div className="find-us-bg">Find Us</div>
@@ -12,20 +22,22 @@ class FindUs extends Component {
                         <div className="info-block">
                             <div className="info-block__address">
                                 <span className="label">Address: </span>
-                                <span>Some address 3</span>
+                                <span>{siteData[0].address}</span>
                             </div>
                             <div className="info-block__phone">
                                 <span className="label">Phone: </span>
-                                <a href="tel:06666666">0666 66 666</a>
+                                <a href={`tel:${siteData[0].phone}`}>
+                                    {siteData[0].phone}
+                                </a>
                             </div>
                             <div className="info-block__hours">
                                 <span className="label">Working hours: </span>
-                                <span>Mon-Sun 9-10</span>
+                                <span>{siteData[0].hours}</span>
                             </div>
                             <div className="info-block__email">
                                 <span className="label">Email: </span>
-                                <a href="mailto:some@email.com">
-                                    some@email.com
+                                <a href={`mailto:${siteData[0].email}`}>
+                                    {siteData[0].email}
                                 </a>
                             </div>
                         </div>
@@ -37,4 +49,10 @@ class FindUs extends Component {
     }
 }
 
-export default FindUs;
+const mapStateToProps = (state) => {
+    return {
+        site: state.site,
+    };
+};
+
+export default connect(mapStateToProps)(FindUs);

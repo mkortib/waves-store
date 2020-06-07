@@ -2,17 +2,13 @@ import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../../actions/user_actions';
-
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faShoppingCart from '@fortawesome/fontawesome-free-solid/faShoppingCart';
 import faBars from '@fortawesome/fontawesome-free-solid/faBars';
-
 import { withStyles } from '@material-ui/core/styles';
-
 import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 import Hidden from '@material-ui/core/Hidden';
-
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -240,7 +236,7 @@ class Header extends Component {
                         </div>
                     </Hidden>
                     <div className="header__logo-bl">
-                        <a href="/" className="logo logo--header">
+                        <Link to="/" className="logo logo--header">
                             <svg
                                 width="57"
                                 height="61"
@@ -260,7 +256,7 @@ class Header extends Component {
                                 />
                             </svg>
                             Waves
-                        </a>
+                        </Link>
                     </div>
 
                     <div className="header__navs">

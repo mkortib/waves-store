@@ -31,7 +31,12 @@ const Footer = ({ data }) => {
                         Waves
                     </a>
                     <div className="payment-methods">
-                        <img src="/images/payments/pay-pal.svg" alt="" />
+                        <a
+                            target="_blank"
+                            href="https://www.paypal.com/webapps/mpp/home"
+                        >
+                            <img src="/images/payments/pay-pal.svg" alt="" />
+                        </a>
                     </div>
                 </div>
                 {/*  */}
@@ -95,7 +100,7 @@ const Footer = ({ data }) => {
                                     />
                                 </div>
                                 <div className="nfo-block">
-                                    <div className="">Email</div>
+                                    <div className="">Email:</div>
                                     <div className="">
                                         {data.siteData[0].email}
                                     </div>
@@ -111,14 +116,11 @@ const Footer = ({ data }) => {
 
                         <div className="site-info-descr">
                             <p>
-                                Lorem ipsum dolor sit amet consectetur
-                                adipisicing elit. Illo minima commodi soluta
-                                repellendus fugit ea corporis molestias nihil
-                                consectetur nesciunt?
-                            </p>
-                            <p>
-                                Lorem ipsum dolor sit amet consectetur
-                                adipisicing elit. Voluptas, ipsum.
+                                The Waves Warranty covers your guitar against
+                                defects in material and workmanship for as long
+                                as you own the guitar, subject to the
+                                limitations set forth in the documentation that
+                                accompanies your product(s).
                             </p>
                         </div>
                     </div>

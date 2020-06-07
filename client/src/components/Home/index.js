@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import HomeSlider from './home_slider';
-import HomePromotion from './home_promotion';
+import HomeSlider from './home-slider';
+import HomePromotion from './home-promotion';
 import CardBlock from '../utils/CardBlock/card-block';
 import { connect } from 'react-redux';
-
 import {
     getProductsByArrival,
     getProductsBySell,
 } from '../../actions/products_actions';
 
 import './home.scss';
+
 class Home extends Component {
     componentDidMount() {
         this.props.dispatch(getProductsBySell());

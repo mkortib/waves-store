@@ -21,7 +21,7 @@ class Layout extends Component {
                 <Header />
                 <div
                     className="page-container"
-                    style={{ padding: '95px 0 40px' }}
+                    style={{ padding: '75px 0 40px' }}
                 >
                     {this.props.children}
                 </div>

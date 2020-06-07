@@ -62,7 +62,7 @@ class ResetUser extends Component {
     render() {
         return (
             <div className="cm-container">
-                <h1>Reset Password</h1>
+                <h1 style={{ marginTop: '50px' }}>Reset Password</h1>
 
                 <form onSubmit={(event) => this.submitForm(event)}>
                     <div className="email-field">
@@ -74,13 +74,19 @@ class ResetUser extends Component {
                     </div>
 
                     {this.state.formSuccess ? (
-                        <div className="form_success">
+                        <div
+                            className="form_success"
+                            style={{ marginBottom: '20px' }}
+                        >
                             Done, check your email
                         </div>
                     ) : null}
 
                     {this.state.formError ? (
-                        <div className="error_label">
+                        <div
+                            className="error_label"
+                            style={{ marginBottom: '20px' }}
+                        >
                             Please check your data
                         </div>
                     ) : null}
