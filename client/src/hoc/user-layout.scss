@@ -171,6 +171,7 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
+		max-width: 100%;
 
 		&:not(:last-child) {
 			margin-bottom: 1.5rem;
@@ -186,6 +187,10 @@
 
 		&__txt {
 			font-size: 1.4rem;
+		}
+
+		@include media('sm') {
+			max-width: 25%;
 		}
 	}
 

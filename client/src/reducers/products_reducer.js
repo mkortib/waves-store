@@ -47,7 +47,7 @@ export default function (state = {}, action) {
         case GET_PRODUCT_DETAIL:
             return { ...state, productDetail: action.payload };
         case CLEAR_PRODUCT_DETAIL:
-            return { ...state, product: action.payload };
+            return { ...state, productDetail: action.payload };
         default:
             return state;
     }

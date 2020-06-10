@@ -56,7 +56,7 @@ app.get('/api/product/articles', (req, res) => {
     const sortBy = req.query.sortBy ? req.query.sortBy : '_id';
     const limit = req.query.limit ? +req.query.limit : 100;
 
-    Product.find()
+    Product.find({ publish: true })
         .populate('brand')
         .populate('wood')
         .sort([[sortBy, order]])

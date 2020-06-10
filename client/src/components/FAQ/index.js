@@ -3,6 +3,7 @@ import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { Link } from 'react-router-dom';
 
 import './faq.scss';
 
@@ -130,9 +131,9 @@ const Faq = () => {
             </div>
             <div className="faq-touch">
                 If you have question{' '}
-                <a href="/" className="faq-touch__word">
+                <Link to="/find_us" className="faq-touch__word">
                     Contact Us
-                </a>
+                </Link>
             </div>
             <div className="about-us-care">
                 <div className="about-us-care__img"></div>

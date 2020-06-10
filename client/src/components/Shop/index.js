@@ -10,9 +10,7 @@ import {
 } from '../../actions/products_actions';
 import CollapseCheckbox from '../utils/collapse-checkbox';
 import CollapseRadio from '../utils/collapse-radio';
-
 import { frets, price } from '../utils/Form/fixed_categories';
-
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faBars from '@fortawesome/fontawesome-free-solid/faBars';
 import faTh from '@fortawesome/fontawesome-free-solid/faTh';
